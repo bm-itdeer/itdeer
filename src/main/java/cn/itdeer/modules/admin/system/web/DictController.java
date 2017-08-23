@@ -24,7 +24,7 @@ import java.util.List;
  */
 
 @Controller
-@RequestMapping("/sys/dict")
+@RequestMapping("/admin/sys/dict")
 public class DictController extends BaseController{
 
     @Autowired
@@ -85,11 +85,11 @@ public class DictController extends BaseController{
      * @param ra
      * @return
      */
-    @RequestMapping(value = "/delete",method = RequestMethod.GET)
+    @RequestMapping(value = "/delete/{id}",method = RequestMethod.GET)
     public String delete(@PathVariable String id, Model model, RedirectAttributes ra){
         dictService.delete(id);
         addMessage(ra,new BaseMessage("字典信息删除完成","执行成功！","success"));
-        return "redirect:/admin/system/list_dict";
+        return "redirect:/admin/system/dict/findAll";
     }
 
     /**

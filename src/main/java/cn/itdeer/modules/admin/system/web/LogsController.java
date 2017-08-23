@@ -23,7 +23,7 @@ import java.util.Date;
  */
 
 @Controller
-@RequestMapping("/sys/logs")
+@RequestMapping("/admin/sys/logs")
 public class LogsController extends BaseController{
 
     @Autowired
@@ -79,7 +79,7 @@ public class LogsController extends BaseController{
     public String delete(@PathVariable String id, RedirectAttributes ra,Model model){
         logsService.delete(id);
         addMessage(ra,new BaseMessage("日志删除完成","执行成功！","success"));
-        return "redirect:/admin/system/list_logs";
+        return "redirect:/admin/system/logs/findAll";
     }
 
     /**
@@ -90,7 +90,7 @@ public class LogsController extends BaseController{
     public String empty(RedirectAttributes ra){
         logsService.empty();
         addMessage(ra,new BaseMessage("日志清除完成","执行成功！","success"));
-        return "redirect:/admin/system/list_logs";
+        return "redirect:/admin/system/logs/findAll";
     }
 
     /**

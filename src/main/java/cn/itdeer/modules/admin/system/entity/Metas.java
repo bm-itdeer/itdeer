@@ -21,15 +21,24 @@ public class Metas implements Serializable {
     @Id
     @GenericGenerator(name="id", strategy="uuid")
     @GeneratedValue(generator="id")
-    private String id;                              //页面ID
+    private String id;                               //页面ID
 
+    private String type;                             //所属
     private String keywords;                        //关键词
     private String description;                     //描述
     private String pictureId;                       //ico图片ID
     private String pictureUrl;                      //ico图片地址
-    private String title;                           //标题
-    private String copy;                            //copy号
-    private String icp;                             //备案号
+    private String title;                            //标题
+    private String copy;                             //copy号
+    private String icp;                              //备案号
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
 
     public String getId() {
         return id;
@@ -99,6 +108,7 @@ public class Metas implements Serializable {
     public String toString() {
         return "Metas{" +
                 "id='" + id + '\'' +
+                ", type='" + type + '\'' +
                 ", keywords='" + keywords + '\'' +
                 ", description='" + description + '\'' +
                 ", pictureId='" + pictureId + '\'' +

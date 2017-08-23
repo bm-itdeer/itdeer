@@ -1,4 +1,4 @@
-package cn.itdeer.modules.front.website.theme1;
+package cn.itdeer.modules.front.website.website1;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
  * 创建时间：2017/8/5.
  */
 @Controller
-@RequestMapping("/blog")
-public class ThemeController {
+@RequestMapping("/website")
+public class WebsiteController {
 
 
     @RequestMapping(value = "",method = RequestMethod.GET)

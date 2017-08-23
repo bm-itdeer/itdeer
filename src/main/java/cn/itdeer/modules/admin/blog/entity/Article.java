@@ -19,8 +19,8 @@ public class Article implements Serializable {
     @Id
     @GenericGenerator(name="id", strategy="uuid")
     @GeneratedValue(generator="id")
-    private String id;                                      //文章ID
-    private String title;                                   //文章标题
+    private String id;                                        //文章ID
+    private String title;                                    //文章标题
 
     @Column(name = "text_content",columnDefinition="TEXT")
     private String textContent;                             //TEXT内容
