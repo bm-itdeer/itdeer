@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>表单</title>
+    <link rel="stylesheet" th:href="@{/modules/admin/css/list.css}" />
+
+    <script th:src="@{/modules/admin/js/jquery.min.js}"></script>
+    <script th:src="@{/modules/admin/js/select-ui.min.js}"></script>
+    <script type="text/javascript">
+        $(document).ready(function(e) {
+            $(".select").uedSelect({
+                width: 520
+            });
+        });
+    </script>
+</head>
+
+<body>
+
+<div class="formbody">
+
+    <div id="usual1" class="usual">
+
+        <div class="itab">
+            <ul><li><a class="selected">字典添加</a></li></ul>
+        </div>
+
+
+        <div id="form" class="tabson">
+
+            <ul class="forminfo">
+                <li><label>招聘企业<b>*</b></label><input name="" type="text" class="dfinput" value="请填写单位名称" style="width:518px;" /></li>
+
+                <li><label>职位名称<b>*</b></label>
+
+                    <div class="vocation">
+                        <select class="select">
+                            <option>UI设计师</option>
+                            <option>交互设计师</option>
+                            <option>前端设计师</option>
+                            <option>网页设计师</option>
+                            <option>Flash动画</option>
+                            <option>视觉设计师</option>
+                            <option>插画设计师</option>
+                            <option>美工</option>
+                            <option>其他</option>
+                        </select>
+                    </div>
+
+                </li>
+
+                <li><label>薪资待遇<b>*</b></label>
+
+                    <div class="vocation">
+                        <select class="select">
+                            <option>3000-5000</option>
+                            <option>5000-8000</option>
+                            <option>8000-10000</option>
+                            <option>10000-15000</option>
+                        </select>
+                    </div>
+
+                </li>
+                <li><label>工作地点<b>*</b></label>
+
+                    <div class="usercity">
+
+                        <div class="cityleft">
+                            <select class="select">
+                                <option>江苏</option>
+                                <option>湖南</option>
+                                <option>广东</option>
+                                <option>北京</option>
+                                <option>湖北</option>
+                            </select>
+                        </div>
+
+                        <div class="cityright">
+                            <select class="select">
+                                <option>南京</option>
+                                <option>无锡</option>
+                                <option>盐城</option>
+                                <option>徐州</option>
+                                <option>连云港</option>
+                            </select>
+                        </div>
+
+                    </div>
+
+                </li>
+                <li>
+                    <label>&nbsp;</label>
+                    <input name="" type="button" class="btn" value="提交" />
+                    <input name="" type="reset" class="btn" value="取消" />
+                </li>
+            </ul>
+
+        </div>
+
+    </div>
+
+
+</div>
+
+</body>
+
+</html>

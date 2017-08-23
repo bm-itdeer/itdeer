@@ -1,0 +1,42 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
+<head th:include="/front/blog/theme1/header::header"/>
+<div class="main-content index-page clearfix">
+
+    <div class="post-lists">
+        <div class="post-lists-body">
+
+            <div class="post-list-item">
+                <div class="post-list-item-container">
+                    <div class="item-thumb bg-deepgrey" style="background-image:url(/modules/front/blog/theme1/img/rand/1.jpg);"></div>
+                    <a href="${permalink()}">
+                        <div class="item-desc">
+                            <p>...</p>
+                        </div>
+                    </a>
+                    <div class="item-slant reverse-slant bg-deepgrey"></div>
+                    <div class="item-slant"></div>
+                    <div class="item-label">
+                        <div class="item-title"><a href="${permalink()}"></a>
+                        </div>
+                        <div class="item-meta clearfix">
+                            <div class="item-meta-ico ${show_icon()}"
+                                 style="background: url(/modules/front/blog/theme1/img/bg-ico.png) no-repeat;background-size: 40px auto;"></div>
+                            <div class="item-meta-cat">
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="lists-navigator clearfix">
+
+    </div>
+</div>
+<div th:include="/front/blog/theme1/footer :: #footer"></div>
+
+</html>
