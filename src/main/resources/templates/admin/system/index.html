@@ -4,328 +4,316 @@
 
     <title>后台主页</title>
     <meta charset="UTF-8"/>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link rel="shortcut icon" type="image/x-icon" th:href="@{/static/modules/admin/img/logo.ico}">
 
     <link rel="stylesheet" th:href="@{/modules/admin/css/bootstrap.min.css}" />
-    <link rel="stylesheet" th:href="@{/modules/admin/css/font-awesome.min.css}" />
-    <link rel="stylesheet" th:href="@{/modules/admin/css/custom.min.css}" />
+    <link rel="stylesheet" th:href="@{/modules/admin/css/font-awesome.css}" />
+    <link rel="stylesheet" th:href="@{/modules/admin/css/style.css}" />
 
-    <script th:src="@{/modules/admin/js/jquery.min.js}"></script>
+<body class="fixed-sidebar full-height-layout gray-bg" style="overflow:hidden">
+<div id="wrapper">
+    <!--左侧导航开始-->
+    <nav class="navbar-default navbar-static-side" role="navigation">
+        <div class="nav-close"><i class="fa fa-times-circle"></i>
+        </div>
+        <div class="sidebar-collapse">
+            <ul class="nav" id="side-menu">
+                <li class="nav-header">
+                    <div class="dropdown profile-element">
+                        <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                                <span class="clear">
+                                    <span class="block m-t-xs" style="font-size:20px;">
+                                        <img  th:src="@{/modules/admin/img/logo.png}" width="40" height="40"/>
+                                        <strong class="font-bold">ItdeerBolg</strong>
+                                    </span>
+                                </span>
+                        </a>
+                    </div>
+                    <div class="logo-element">Itdeer
+                    </div>
+                </li>
+                <li>
+                    <a class="J_menuItem" href="index_v1.html">
+                        <i class="fa fa-home"></i>
+                        <span class="nav-label">主页</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="fa fa fa-bar-chart-o"></i>
+                        <span class="nav-label">统计图表</span>
+                        <span class="fa arrow"></span>
+                    </a>
+                    <ul class="nav nav-second-level">
+                        <li>
+                            <a href="#" class="dropdown-toggle">
+                                <i class="fa fa-diamond"></i>分类
+                                <span class="menu-text"></span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="dropdown-toggle">
+                                <i class="fa fa-diamond"></i>Flot
+                                <span class="menu-text"></span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
 
-    <script type="text/javascript">
-        $(document).ready(function(e) {
-            $(".right_col").height($(window).scrollTop());
-        });
-    </script>
+                <li>
+                    <a href="#"><i class="fa fa-edit"></i> <span class="nav-label">表单</span><span class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
+                        <li>
+                            <a href="#" class="dropdown-toggle">
+                                <i class="fa fa-diamond"></i>表单向导
+                                <span class="menu-text"></span>
+                            </a>
+                        </li>
+                        <li>
 
-</head>
+                            <a href="#" class="dropdown-toggle">
+                                <i class="fa fa-diamond"></i>文件上传
+                                <span class="fa arrow"></span>
+                            </a>
+                            <ul class="nav nav-third-level">
+                                <li>
+                                    <a class="J_menuItem" href="form_webuploader.html"><i class="fa fa-circle"></i>百度WebUploader</a>
+                                </li>
+                                <li><a class="J_menuItem" href="form_file_upload.html"><i class="fa fa-circle"></i>DropzoneJS</a>
+                                </li>
+                            </ul>
+                        </li>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#"><i class="fa fa-picture-o"></i> <span class="nav-label">相册</span><span class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
+                        <li><a class="J_menuItem" href="basic_gallery.html">基本图库</a>
+                        </li>
+                        <li><a class="J_menuItem" href="carousel.html">图片切换</a>
+                        </li>
+                        <li><a class="J_menuItem" href="blueimp.html">Blueimp相册</a>
+                        </li>
+                    </ul>
+                </li>
 
-<body class="nav-md">
-<div class="container body">
-    <div class="main_container">
-        <div class="col-md-3 left_col">
-            <div id="left_col" class="left_col scroll-view">
-                <div class="navbar nav_title" style="border: 0;">
-                    <a href="${url}" class="site_title"><i class="fa fa-home"></i> <span>ITDEER Blog</span></a>
+                <li>
+                    <a href="#">
+                        <i class="fa fa-book"></i>
+                        <span class="nav-label">博客管理</span>
+                        <span class="fa arrow"></span>
+                    </a>
+
+                    <ul class="nav nav-second-level">
+                        <li>
+                            <a th:href="@{/admin/sys/user/findAll}" class="dropdown-toggle" target="main">
+                                <i class="fa fa-user-secret"></i>文章管理
+                                <span class="menu-text"></span>
+                            </a>
+                        </li>
+                        <li>
+                            <a th:href="@{/admin/sys/metas/findAll}" class="dropdown-toggle" target="main">
+                                <i class="fa fa-globe"></i>类别管理
+                                <span class="menu-text"></span>
+                            </a>
+                        </li>
+                        <li>
+                            <a th:href="@{/admin/sys/picture/findAll}" class="dropdown-toggle" target="main">
+                                <i class="fa fa-link"></i>友链管理
+                                <span class="menu-text"></span>
+                            </a>
+                        </li>
+                        <li>
+                            <a th:href="@{/admin/sys/theme/findAll}" class="dropdown-toggle" target="main">
+                                <i class="fa fa-commenting-o"></i>留言管理
+                                <span class="menu-text"></span>
+                            </a>
+                        </li>
+                        <li>
+                            <a th:href="@{/admin/sys/logs/findAll}" class="dropdown-toggle" target="main">
+                                <i class="fa fa-diamond"></i>主题管理
+                                <span class="menu-text"></span>
+                            </a>
+                        </li>
+
+                    </ul>
+                </li>
+
+                <li>
+                    <a href="#">
+                        <i class="fa fa-cogs"></i>
+                        <span class="nav-label">系统设置</span>
+                        <span class="fa arrow"></span>
+                    </a>
+
+                    <ul class="nav nav-second-level">
+                        <li>
+                            <a th:href="@{/admin/sys/user/findAll}" class="dropdown-toggle" target="main">
+                                <i class="fa fa-user-secret"></i>个人管理
+                                <span class="menu-text"></span>
+                            </a>
+                        </li>
+                        <li>
+                            <a th:href="@{/admin/sys/metas/findAll}" class="dropdown-toggle" target="main">
+                                <i class="fa fa-globe"></i>网站管理
+                                <span class="menu-text"></span>
+                            </a>
+                        </li>
+                        <li>
+                            <a th:href="@{/admin/sys/picture/findAll}" class="dropdown-toggle" target="main">
+                                <i class="fa fa-photo"></i>图片管理
+                                <span class="menu-text"></span>
+                            </a>
+                        </li>
+                        <li>
+                            <a th:href="@{/admin/sys/theme/findAll}" class="dropdown-toggle" target="main">
+                                <i class="fa fa-diamond"></i>主题管理
+                                <span class="menu-text"></span>
+                            </a>
+                        </li>
+                        <li>
+                            <a th:href="@{/admin/sys/logs/findAll}" class="dropdown-toggle" target="main">
+                                <i class="fa fa-diamond"></i>日志管理
+                                <span class="menu-text"></span>
+                            </a>
+                        </li>
+                        <li>
+                            <a th:href="@{/admin/sys/dict/findAll}" class="dropdown-toggle" target="main">
+                                <i class="fa fa-bookmark-o"></i>字典管理
+                                <span class="menu-text"></span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
+            </ul>
+        </div>
+    </nav>
+    <!--左侧导航结束-->
+    <!--右侧部分开始-->
+    <div id="page-wrapper" class="gray-bg dashbard-1">
+        <div class="row border-bottom">
+            <nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
+                <div class="navbar-header"><a class="navbar-minimalize minimalize-styl-2 btn btn-info " href="#"><i class="fa fa-bars"></i> </a>
                 </div>
-                <div class="clearfix"></div>
-                <!-- sidebar menu -->
-                <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
-                    <div class="menu_section">
-                        <ul class="nav side-menu">
 
-                            <li>
-                                <a href="#">
-                                    <i class="fa fa-dashboard"></i>
-                                    <span class="menu-text">Home</span>
-                                </a>
+                <ul class="nav navbar-top-links navbar-right">
+
+
+                    <li class="dropdown">
+                        <a class="dropdown-toggle count-info" data-toggle="dropdown" href="#">
+                            <i class="fa fa-envelope"></i> <span class="label label-warning">16</span>
+                        </a>
+                        <ul class="dropdown-menu dropdown-messages">
+
+                            <li class="m-t-xs">
+                                <div class="dropdown-messages-box">
+                                    <a href="profile.html" class="pull-left">
+                                        <img alt="image" class="img-circle" src="img/a7.jpg">
+                                    </a>
+                                    <div class="media-body">
+                                        <small class="pull-right">46小时前</small>
+                                        <strong>小四</strong> 是不是只有我死了,你们才不骂爵迹
+                                        <br>
+                                        <small class="text-muted">3天前 2014.11.8</small>
+                                    </div>
+                                </div>
                             </li>
-
+                            <li class="divider"></li>
                             <li>
-                                <a href="#">
-                                    <i class="fa fa-edit"></i>
-                                    <span class="menu-text">文章撰写</span>
-                                </a>
+                                <div class="dropdown-messages-box">
+                                    <a href="profile.html" class="pull-left">
+                                        <img alt="image" class="img-circle" src="img/a4.jpg">
+                                    </a>
+                                    <div class="media-body ">
+                                        <small class="pull-right text-navy">25小时前</small>
+                                        <strong>二愣子</strong> 呵呵
+                                        <br>
+                                        <small class="text-muted">昨天</small>
+                                    </div>
+                                </div>
                             </li>
-
+                            <li class="divider"></li>
                             <li>
-                                <a href="#">
-                                    <i class="fa fa-newspaper-o"></i>
-                                    <span class="menu-text">文章管理</span>
-
-                                </a>
-                            </li>
-
-                            <li>
-                                <a href="#">
-                                    <i class="fa fa-comment"></i>
-                                    <span class="menu-text">评论</span>
-                                </a>
-                            </li>
-
-                            <li>
-                                <a href="#">
-                                    <i class="fa fa-plug"></i>
-                                    <span class="menu-text">插件</span>
-                                </a>
-                            </li>
-
-
-                            <li>
-                                <a>
-                                    <i class="fa fa-newspaper-o"></i>
-                                    <span class="menu-text">博客管理</span>
-                                    <span class="fa fa-chevron-down"></span>
-                                </a>
-
-                                <ul class="nav child_menu">
-                                    <li>
-                                        <a href="#">
-                                            <i class="fa fa-double-angle-right"></i>
-                                            <span class="menu-text">文章管理</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#">
-                                            <i class="fa fa-double-angle-right"></i>
-                                            <span class="menu-text">类别管理</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#">
-                                            <i class="fa fa-double-angle-right"></i>
-                                            <span class="menu-text">友链管理</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#">
-                                            <i class="fa fa-double-angle-right"></i>
-                                            <span class="menu-text">留言管理</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#">
-                                            <i class="fa fa-double-angle-right"></i>
-                                            <span class="menu-text">主题管理</span>
-                                        </a>
-                                    </li>
-
-                                </ul>
-                            </li>
-
-
-                            <li>
-                                <a>
-                                    <i class="fa fa-cogs"></i>
-                                    <span class="menu-text">系统设置</span>
-                                    <span class="fa fa-chevron-down"></span>
-                                </a>
-
-                                <ul class="nav child_menu">
-                                    <li>
-                                        <a th:href="@{/admin/sys/user/findAll}" target="main">
-                                            <i class="fa fa-double-angle-right"></i>
-                                            <span class="menu-text">个人管理</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a th:href="@{/admin/sys/metas/findAll}" target="main">
-                                            <i class="fa fa-double-angle-right"></i>
-                                            <span class="menu-text">网站管理</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a th:href="@{/admin/sys/picture/findAll}" target="main">
-                                            <i class="fa fa-double-angle-right"></i>
-                                            <span class="menu-text">图片管理</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a th:href="@{/admin/sys/theme/findAll}" target="main">
-                                            <i class="fa fa-double-angle-right"></i>
-                                            <span class="menu-text">主题管理</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a th:href="@{/admin/sys/logs/findAll}" target="main">
-                                            <i class="fa fa-double-angle-right"></i>
-                                            <span class="menu-text">日志管理</span>
-                                        </a>
-                                    </li>
-
-                                    <li>
-                                        <a th:href="@{/admin/sys/dict/findAll}" target="main">
-                                            <i class="fa fa-double-angle-right"></i>
-                                            <span class="menu-text">字典管理</span>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </li>
-
-                            <li>
-                                <a>
-                                    <i class="fa fa-list"></i>
-                                    <span class="menu-text">网站管理</span>
-                                    <span class="fa fa-chevron-down"></span>
-                                </a>
-                                <ul class="nav child_menu">
-                                    <li>
-                                        <a href="#" class="dropdown-toggle">
-                                            <i class="fa fa-double-angle-right"></i>
-                                            <span class="menu-text">分类</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="dropdown-toggle">
-                                            <i class="fa fa-double-angle-right"></i>
-                                            <span class="menu-text">标签</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="dropdown-toggle">
-                                            <i class="fa fa-double-angle-right"></i>
-                                            <span class="menu-text">链接</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="dropdown-toggle">
-                                            <i class="fa fa-double-angle-right"></i>
-                                            <span class="menu-text">导航</span>
-                                        </a>
-                                    </li>
-                                </ul>
+                                <div class="text-center link-block">
+                                    <a class="J_menuItem" href="mailbox.html">
+                                        <i class="fa fa-envelope"></i> <strong> 查看所有消息</strong>
+                                    </a>
+                                </div>
                             </li>
                         </ul>
-                    </div>
+                    </li>
 
-                </div>
-                <!-- /sidebar menu -->
-            </div>
-        </div>
-
-        <!-- top navigation -->
-        <div class="top_nav">
-            <div class="nav_menu">
-                <nav>
-                    <div class="nav toggle">
-                        <a id="menu_toggle"><i class="fa fa-bars"></i></a>
-                    </div>
-
-                    <ul class="nav navbar-nav navbar-right">
-                        <li class="">
-                            <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                                <img th:src="@{/modules/admin/img/default-portrait.gif}" alt=""/>张三
-                                <span class=" fa fa-angle-down"></span>
-                            </a>
-                            <ul class="dropdown-menu dropdown-usermenu pull-right">
-                                <li>
-                                    <a href="admin/user">
-                                        <i class="fa fa-user"></i>个人信息
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="admin/change_password">
-                                        <i class="fa fa-key"></i>更改密码
-                                    </a>
-                                </li>
-                                <li class="divider"></li>
-                                <li>
-                                    <a href="admin/logout">
-                                        <i class="fa fa-sign-out"></i>退出
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-
-                        <li role="presentation" class="dropdown">
-                            <a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown" aria-expanded="false">
-                                <i class="fa fa-envelope-o"></i>
-                                <span class="badge bg-green">8</span>
-                            </a>
-                            <ul id="menu1" class="dropdown-menu list-unstyled msg_list" role="menu">
-
-                                <li>
-                                    <a target="_blank" href="#">
-                                        <span class="image">
-                                            <img class="msg-photo" th:src="@{/modules/admin/img/default-portrait.gif}"/>
-                                        </span>
-                                        <span>
-                                            <span>Test</span>
-                                            <span class="time">2017</span>
-                                        </span>
-                                        <span class="message">有一条消息</span>
-                                    </a>
-                                </li>
-
-                                <li>
-                                    <a target="_blank" href="#">
-                                        <span class="image">
-                                            <img class="msg-photo" th:src="@{/modules/admin/img/default-portrait.gif}"/>
-                                        </span>
-                                        <span>
-                                            <span>Test</span>
-                                            <span class="time">2017</span>
-                                        </span>
-                                        <span class="message">有一条消息</span>
-                                    </a>
-                                </li>
-
-                                <li>
-                                    <div class="text-center">
-                                        <a href="admin/comment">
-                                            查看所有消息
-                                            <i class="fa fa-angle-right"></i>
-                                        </a>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle count-info" data-toggle="dropdown" href="#">
+                            <i class="fa fa-bell"></i> <span class="label label-primary">8</span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="mailbox.html">
+                                    <div>
+                                        <i class="fa fa-envelope fa-fw"></i>&nbsp;&nbsp;16条未读消息
                                     </div>
-                                </li>
-                            </ul>
-                        </li>
+                                </a>
+                            </li>
+                            <li class="divider"></li>
+                            <li>
+                                <a href="profile.html">
+                                    <div>
+                                        <i class="fa fa-qq fa-fw"></i>&nbsp;&nbsp;3条新回复
+                                    </div>
+                                </a>
+                            </li>
+                            <li class="divider"></li>
+                            <li>
+                                <div class="text-center link-block">
+                                    <a class="J_menuItem" href="notifications.html">
+                                        <strong>查看所有 </strong>
+                                        <i class="fa fa-angle-right"></i>
+                                    </a>
+                                </div>
+                            </li>
+                        </ul>
+                    </li>
 
-                        <li role="presentation" class="dropdown">
-                            <a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown" aria-expanded="false">
-                                <i class="fa fa-globe"></i>
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li>
-                                    <a tabindex="-1" class="language" id="zh_CN">简体中文</a>
-                                </li>
-                                <li>
-                                    <a tabindex="-1" class="language" id="en_US">English</a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li role="presentation">
-                            <a target="_blank" href="#" class="dropdown-toggle info-number">
-                                <i class="fa fa-comments"></i>&nbsp;建议反馈
-                            </a>
-                    </ul>
-                </nav>
-            </div>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle count-info" data-toggle="dropdown" href="#">张三</a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="admin/user">
+                                    <i class="fa fa-user"></i>&nbsp;&nbsp;个人信息
+                                </a>
+                            </li>
+                            <li>
+                                <a href="admin/change_password">
+                                    <i class="fa fa-key"></i>&nbsp;&nbsp;更改密码
+                                </a>
+                            </li>
+                            <li class="divider"></li>
+                            <li>
+                                <a href="admin/logout">
+                                    <i class="fa fa-sign-out"></i>&nbsp;&nbsp;退出
+                                </a>
+                            </li>
+
+                        </ul>
+                    </li>
+
+                </ul>
+            </nav>
         </div>
-        <!-- /top navigation -->
-        <!-- page content -->
-       <!--<div class="right_col" role="main" style="min-height: 1080px;">-->
-        <div class="right_col scroll-view" role="main">
-           <iframe src="" scrolling="no" style="border: 0px" name="main" width="100%" height="500" ></iframe>
-       </div>
-
-
-        <footer style="position:fixed;bottom:0;width: 100%;">
-            <strong>Copyright © 2013-2017<a href="http://www.zrlog.com"> Itdeer . </a></strong> All rights reserved.
-            <div class="pull-right">
-                <strong>Version</strong> 1.0.0
-            </div>
-            <div class="clearfix"></div>
-        </footer>
+        <div class="row J_mainContent" id="content-main">
+            <iframe name="main" width="100%" height="100%" src="index_v1.html?v=4.0" frameborder="0" data-id="index_v1.html" seamless></iframe>
+        </div>
     </div>
+    <!--右侧部分结束-->
 </div>
 
-<!-- 全局js -->
-
-
+<script th:src="@{/modules/admin/js/jquery.min.js}"></script>
 <script th:src="@{/modules/admin/js/bootstrap.min.js}"></script>
-<script th:src="@{/modules/admin/js/custom.min.js}"></script>
+<script th:src="@{/modules/admin/js/jquery.metisMenu.js}"></script>
+<script th:src="@{/modules/admin/js/hAdmin.js}"></script>
 
 </body>
 
