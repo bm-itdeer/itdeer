@@ -124,32 +124,38 @@
 
                                 <ul class="nav child_menu">
                                     <li>
-                                        <a href="#">
+                                        <a th:href="@{/admin/sys/user/findAll}" target="main">
                                             <i class="fa fa-double-angle-right"></i>
                                             <span class="menu-text">个人管理</span>
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="#">
+                                        <a th:href="@{/admin/sys/metas/findAll}" target="main">
                                             <i class="fa fa-double-angle-right"></i>
                                             <span class="menu-text">网站管理</span>
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="#">
+                                        <a th:href="@{/admin/sys/picture/findAll}" target="main">
+                                            <i class="fa fa-double-angle-right"></i>
+                                            <span class="menu-text">图片管理</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a th:href="@{/admin/sys/theme/findAll}" target="main">
                                             <i class="fa fa-double-angle-right"></i>
                                             <span class="menu-text">主题管理</span>
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="#">
+                                        <a th:href="@{/admin/sys/logs/findAll}" target="main">
                                             <i class="fa fa-double-angle-right"></i>
                                             <span class="menu-text">日志管理</span>
                                         </a>
                                     </li>
 
                                     <li>
-                                        <a th:href="@{/sys/dict/list}" target="main">
+                                        <a th:href="@{/admin/sys/dict/findAll}" target="main">
                                             <i class="fa fa-double-angle-right"></i>
                                             <span class="menu-text">字典管理</span>
                                         </a>
