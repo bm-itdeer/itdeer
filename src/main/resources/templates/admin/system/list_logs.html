@@ -23,20 +23,16 @@
     <div id="usual1" class="usual">
 
         <div class="itab">
-            <ul><li><a class="selected">字典列表</a></li></ul>
+            <ul><li><a class="selected">日志列表</a></li></ul>
         </div>
 
         <div id="list" class="tabson">
-            <a th:href="@{/sys/dict/form}" target="main">
-                <ul class="toolbar1"><li><span>+</span>添加</li></ul>
-            </a>
 
             <ul class="seachform">
 
-                <li><label>综合查询</label><input name="" type="text" class="scinput" /></li>
+                <li><label>IP查询</label><input name="remoteAddr" type="text" class="scinput" /></li>
 
-
-                <li><label>重点客户</label>
+                <li><label>日志类型</label>
                     <div class="vocation">
                         <select class="select">
                             <option>全部</option>
@@ -45,11 +41,11 @@
                     </div>
                 </li>
 
-                <li><label>客户状态</label>
+                <li><label>日志级别</label>
                     <div class="vocation">
                         <select class="select">
-                            <option>全部</option>
-                            <option>其他</option>
+                            <option>Error</option>
+                            <option>Info</option>
                         </select>
                     </div>
                 </li>
@@ -71,6 +67,9 @@
                 </tr>
                 </thead>
                 <tbody>
+
+                <th:block th:each="form : ${pageList.getContent()}">
+
                 <tr>
                     <td>20130908</td>
                     <td>王金平幕僚：马英九声明字字见血 人活着没意思</td>
@@ -84,57 +83,7 @@
                     </td>
                 </tr>
 
-                <tr>
-                    <td>20130907</td>
-                    <td>温州19名小学生中毒流鼻血续：周边部分企业关停</td>
-                    <td>uimaker</td>
-                    <td>山东济南</td>
-                    <td>2013-09-08 14:02</td>
-                    <td>未审核</td>
-                    <td>
-                        <a href="#" class="tablelink">查看</a>
-                        <a href="#" class="tablelink">删除</a>
-                    </td>
-                </tr>
-
-                <tr>
-                    <td>20130906</td>
-                    <td>社科院:电子商务促进了农村经济结构和社会转型</td>
-                    <td>user</td>
-                    <td>江苏无锡</td>
-                    <td>2013-09-07 13:16</td>
-                    <td>未审核</td>
-                    <td>
-                        <a href="#" class="tablelink">查看</a>
-                        <a href="#" class="tablelink">删除</a>
-                    </td>
-                </tr>
-
-                <tr>
-                    <td>20130905</td>
-                    <td>江西&quot;局长违规建豪宅&quot;：局长检讨</td>
-                    <td>admin</td>
-                    <td>北京市</td>
-                    <td>2013-09-06 10:36</td>
-                    <td>已审核</td>
-                    <td>
-                        <a href="#" class="tablelink">查看</a>
-                        <a href="#" class="tablelink">删除</a>
-                    </td>
-                </tr>
-
-                <tr>
-                    <td>20130907</td>
-                    <td>温州19名小学生中毒流鼻血续：周边部分企业关停</td>
-                    <td>uimaker</td>
-                    <td>山东济南</td>
-                    <td>2013-09-08 14:02</td>
-                    <td>未审核</td>
-                    <td>
-                        <a href="#" class="tablelink">查看</a>
-                        <a href="#" class="tablelink">删除</a>
-                    </td>
-                </tr>
+                </th:block>
 
                 </tbody>
             </table>
