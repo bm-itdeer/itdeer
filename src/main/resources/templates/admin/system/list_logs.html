@@ -57,12 +57,14 @@
             <table class="tablelist">
                 <thead>
                 <tr>
-                    <th>编号</th>
                     <th>标题</th>
-                    <th>用户</th>
-                    <th>籍贯</th>
-                    <th>发布时间</th>
-                    <th>是否审核</th>
+                    <th>操作用户</th>
+                    <th>日志级别</th>
+                    <th>日志类型</th>
+                    <th>URI</th>
+                    <th>提交方式</th>
+                    <th>操作者IP</th>
+                    <th>操作时间</th>
                     <th>操作</th>
                 </tr>
                 </thead>
@@ -71,12 +73,14 @@
                 <th:block th:each="form : ${pageList.getContent()}">
 
                 <tr>
-                    <td>20130908</td>
-                    <td>王金平幕僚：马英九声明字字见血 人活着没意思</td>
-                    <td>admin</td>
-                    <td>江苏南京</td>
-                    <td>2013-09-09 15:05</td>
-                    <td>已审核</td>
+                    <td><th:block th:text="${form.title}"/></td>
+                    <td><th:block th:text="${form.userName}"/></td>
+                    <td><th:block th:text="${form.level}"/></td>
+                    <td><th:block th:text="${form.type}"/></td>
+                    <td><th:block th:text="${form.requestUri}"/></td>
+                    <td><th:block th:text="${form.method}"/></td>
+                    <td><th:block th:text="${form.remoteAddr}"/></td>
+                    <td><th:block th:text="${form.createDate}"/></td>
                     <td>
                         <a href="#" class="tablelink">查看</a>
                         <a href="#" class="tablelink"> 删除</a>
