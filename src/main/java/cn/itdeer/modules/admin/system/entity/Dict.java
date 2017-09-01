@@ -24,9 +24,9 @@ public class Dict implements Serializable{
     private String id;                              //数据字典ID
 
     private String value;	                        // 数据值
-    private String label;	                        // 标签名
+    private String label;	                        // 标签
     private String type;	                        // 类型
-    private String description;                     // 描述
+    private String description;                  // 描述
     private int sort;	                            // 排序
 
     public String getId() {

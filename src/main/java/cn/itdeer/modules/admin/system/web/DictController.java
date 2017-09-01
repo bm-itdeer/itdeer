@@ -40,7 +40,7 @@ public class DictController extends BaseController{
     public String findAll(@RequestParam(value = "page", defaultValue = "0") Integer page,Model model){
         Page<Dict> pageList = dictService.findAll(page);
         model.addAttribute("pageList",pageList);
-        return "admin/system/list_dict";
+        return "admin/system/dict_list";
     }
 
     /**
@@ -49,8 +49,8 @@ public class DictController extends BaseController{
      * @param model
      * @return
      */
-    @RequestMapping(value = "/form",method = RequestMethod.GET)
-    public String form(@RequestParam String id,Model model){
+    @RequestMapping(value = "/form/{id}",method = RequestMethod.GET)
+    public String form(@PathVariable String id,Model model){
         if(id != null){
             Dict form = dictService.findById(id);
             model.addAttribute("form",form);
@@ -58,7 +58,7 @@ public class DictController extends BaseController{
 
         List<String> list = dictService.type();
         model.addAttribute("list",list);
-        return "admin/system/form_dict";
+        return "admin/system/dict_form";
     }
 
     /**
@@ -75,7 +75,7 @@ public class DictController extends BaseController{
 
         Page<Dict> pageList = dictService.findByType(0,dict.getType());
         model.addAttribute("pageList",pageList);
-        return "admin/system/list_dict";
+        return "admin/system/dict_list";
     }
 
     /**
@@ -103,7 +103,7 @@ public class DictController extends BaseController{
     public String desLike(@RequestParam(value = "page", defaultValue = "0") Integer page,@RequestParam String description, Model model){
         Page<Dict> pageList = dictService.desLike(page,description);
         model.addAttribute("pageList",pageList);
-        return "admin/system/list_dict";
+        return "admin/system/dict_list";
     }
 
 }
