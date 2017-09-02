@@ -1,15 +1,9 @@
 <!DOCTYPE html>
 <html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <title>表单</title>
-    <link rel="stylesheet" th:href="@{/modules/admin/css/list.css}" />
-
-    <script th:src="@{/modules/admin/js/jquery.min.js}"></script>
-    <script th:src="@{/modules/admin/js/select-ui.min.js}"></script>
-</head>
+<head th:replace="admin/tools/head"/>
 
 <body>
+    <th:block th:utext="${message}"/>
 
     <div class="formbody">
 
@@ -20,13 +14,13 @@
             </div>
 
             <div id="form" class="tabson">
-                <form th:attr="action=@{/admin/sys/dict/save}">
+                <form th:attr="action=@{/admin/system/dict/save}" method="post">
                     <ul class="forminfo">
-                        <li><label>键值:<b>*</b></label><input name="value" type="text" class="dfinput" style="width:518px;" /></li>
-                        <li><label>标签:<b>*</b></label><input name="label" type="text" class="dfinput" style="width:518px;" /></li>
-                        <li><label>类型:<b>*</b></label><input name="type" type="text" class="dfinput" style="width:518px;" /></li>
-                        <li><label>描述:</label><input name="description" type="text" class="dfinput" style="width:518px;" /></li>
-                        <li><label>排序:</label><input name="sort" type="text" class="dfinput" style="width:518px;" /></li>
+                        <li><label>键值:<b>*</b></label><input name="value" type="text" class="dfinput" style="width:518px;" th:value="${form != null}?${form.value}:''" /></li>
+                        <li><label>标签:<b>*</b></label><input name="label" type="text" class="dfinput" style="width:518px;" th:value="${form != null}?${form.label}:''" /></li>
+                        <li><label>类型:<b>*</b></label><input name="type" type="text" class="dfinput" style="width:518px;" th:value="${form != null}?${form.type}:''" /></li>
+                        <li><label>描述:</label><input name="description" type="text" class="dfinput" style="width:518px;" th:value="${form != null}?${form.description}:''" /></li>
+                        <li><label>排序:</label><input name="sort" type="text" class="dfinput" style="width:518px;" th:value="${form != null}?${form.sort}:''" /></li>
                         <li>
                             <label>&nbsp;</label>
                             <input type="submit" class="btn" value="提交" />

@@ -13,7 +13,7 @@ public abstract class BaseController {
     /**
      * 定义提示信息属性
      */
-    private static final String option = "<script>toastr.option = {\"closeButton\": true,\"progressBar\": true,\"timeOut\": 8000}";
+    private static final String option = "<script>toastr.option = {\"closeButton\": true,\"progressBar\": true,\"timeOut\": 8000} \n";
 
     /**
      * 请求转发携带消息

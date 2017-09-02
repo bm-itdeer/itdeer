@@ -24,7 +24,7 @@ import java.util.List;
  */
 
 @Controller
-@RequestMapping("/admin/sys/dict")
+@RequestMapping("/admin/system/dict")
 public class DictController extends BaseController{
 
     @Autowired
@@ -40,6 +40,9 @@ public class DictController extends BaseController{
     public String findAll(@RequestParam(value = "page", defaultValue = "0") Integer page,Model model){
         Page<Dict> pageList = dictService.findAll(page);
         model.addAttribute("pageList",pageList);
+        List<String> list = dictService.type();
+        System.out.println(list.toString());
+        model.addAttribute("list",list);
         return "admin/system/dict_list";
     }
 
@@ -64,18 +67,14 @@ public class DictController extends BaseController{
     /**
      * 字典-保存
      * @param dict
-     * @param model
      * @param ra
      * @return
      */
     @RequestMapping(value = "/save",method = RequestMethod.POST)
-    public String save(Dict dict,Model model,RedirectAttributes ra){
+    public String save(Dict dict,RedirectAttributes ra){
         dictService.save(dict);
         addMessage(ra,new BaseMessage("字典信息保存完成","执行成功！","success"));
-
-        Page<Dict> pageList = dictService.findByType(0,dict.getType());
-        model.addAttribute("pageList",pageList);
-        return "admin/system/dict_list";
+        return "redirect:/admin/system/dict/findAll";
     }
 
     /**

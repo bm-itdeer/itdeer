@@ -42,14 +42,27 @@ public class LogsServiceImplTest {
         Date startDate = dateFormat1.parse("2017-08-17 21:23:41");
         Date endDate = dateFormat1.parse("2017-08-27 21:24:25");
 
-        Page<Logs> page = logsRepository.findByCreateDateAfterAndCreateDateBefore(startDate,endDate,BasePageBuilder.create(0,10,sort));
+        //Page<Logs> page = logsRepository.findByCreateDateAfterAndCreateDateBefore(startDate,endDate,BasePageBuilder.create(0,10,sort));
+
+        Page<Logs> page = logsRepository.findAll(BasePageBuilder.create(1,5));
+
+
 
         for (Logs logs :page){
             System.out.println("Page1:"+logs.toString());
         }
-        System.out.println(page.getTotalPages());
-        System.out.println(page.getTotalElements());
-        System.out.println(page.getNumber());
+        System.out.println(page.getTotalPages());       //总页数
+        System.out.println(page.getTotalElements());    //总记录数
+        System.out.println(page.getNumber());           //当前页数
+        System.out.println("---------------------------------------------------------");
+        System.out.println(page.isFirst());             //是第一页吗
+        System.out.println(page.isLast());              //是最后一页吗
+
+        System.out.println("---------------------------------------------------------");
+
+        System.out.println(page.getSize());             //每页数
+        System.out.println(page.hasPrevious());         //有上一页吗
+        System.out.println(page.hasNext());             //有下一页吗
 
     }
 
