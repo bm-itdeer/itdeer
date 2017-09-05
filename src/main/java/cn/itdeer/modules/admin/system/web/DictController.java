@@ -42,6 +42,7 @@ public class DictController extends BaseController{
         model.addAttribute("pageList",pageList);
         List<String> list = dictService.type();
         System.out.println(list.toString());
+        model.addAttribute("url","/admin/system/dict/findAll");
         model.addAttribute("list",list);
         return "admin/system/dict_list";
     }
