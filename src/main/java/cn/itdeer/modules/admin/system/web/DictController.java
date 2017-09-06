@@ -2,6 +2,7 @@ package cn.itdeer.modules.admin.system.web;
 
 import cn.itdeer.common.base.BaseController;
 import cn.itdeer.common.base.BaseMessage;
+import cn.itdeer.common.exception.ValidateException;
 import cn.itdeer.modules.admin.system.entity.Dict;
 import cn.itdeer.modules.admin.system.service.DictService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -67,16 +68,42 @@ public class DictController extends BaseController{
     }
 
     /**
+     * 添加键值
+     * @param type
+     * @param model
+     * @return
+     */
+    @RequestMapping(value = "/addKey/{type}",method = RequestMethod.GET)
+    public String addKey(@PathVariable String type,Model model){
+        Dict form = new Dict();
+        form.setType(type);
+        model.addAttribute("form",form);
+        return "admin/system/dict_form";
+    }
+
+    /**
      * 字典-保存
      * @param dict
      * @param ra
      * @return
      */
     @RequestMapping(value = "/save",method = RequestMethod.POST)
-    public String save(Dict dict,RedirectAttributes ra){
-        dictService.save(dict);
-        addMessage(ra,new BaseMessage("字典信息保存完成","执行成功！","success"));
-        return "redirect:/admin/system/dict/findAll";
+    public String save(Dict dict,RedirectAttributes ra,Model model){
+        try {
+            dictService.save(dict);
+            addMessage(ra,new BaseMessage("字典信息保存完成","执行成功！","success"));
+
+            Page<Dict> pageList = dictService.findByType(0,dict.getType());
+            model.addAttribute("pageList",pageList);
+
+            model.addAttribute("url","/admin/system/dict/findByType?type=" + dict.getType() + "&");
+        } catch (ValidateException e) {
+            model.addAttribute("form",dict);
+            addMessage(model,new BaseMessage(e.getMessage(),"执行失败！","error"));
+            return "admin/system/dict_form";
+        }
+
+        return "admin/system/dict_list";
     }
 
     /**
@@ -110,7 +137,7 @@ public class DictController extends BaseController{
 
         model.addAttribute("description",description);
 
-        model.addAttribute("url","/admin/system/dict/desLike?description=" + description);
+        model.addAttribute("url","/admin/system/dict/desLike?description=" + description + "&");
         return "admin/system/dict_list";
     }
 
@@ -131,9 +158,8 @@ public class DictController extends BaseController{
         model.addAttribute("list",list);
 
         model.addAttribute("type",type);
-        System.out.println(type+"GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGg");
 
-        model.addAttribute("url","/admin/system/dict/findByType?type=" + type);
+        model.addAttribute("url","/admin/system/dict/findByType?type=" + type + "&");
         return "admin/system/dict_list";
     }
 

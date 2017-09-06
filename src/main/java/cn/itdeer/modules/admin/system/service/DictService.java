@@ -1,5 +1,6 @@
 package cn.itdeer.modules.admin.system.service;
 
+import cn.itdeer.common.exception.ValidateException;
 import cn.itdeer.modules.admin.system.entity.Dict;
 import org.springframework.data.domain.Page;
 
@@ -31,7 +32,7 @@ public interface DictService {
      * 字典-保存
      * @param dict
      */
-    void save(Dict dict);
+    void save(Dict dict) throws ValidateException;
 
     /**
      * 字典-按ID-删除

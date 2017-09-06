@@ -25,7 +25,7 @@
                                 <th:block th:value="${type}"></th:block>
                                 <select th:name="type" class="select" onchange="document.dict_typeForm.submit()">
                                     <th:block th:each="att : ${list}">
-                                        <option th:value="${att}" th:text="${att}" th:selected="(${att} ne ${type})?'':'selected'"></option>
+                                        <option th:value="${att}" th:text="${att}" th:selected="#{att == type}? 'selected':''"></option>
                                     </th:block>
                                 </select>
                             </div>
@@ -45,7 +45,6 @@
                             <th>类型</th>
                             <th>描述</th>
                             <th>排序</th>
-                            <th>FF</th>
                             <th>操作</th>
                         </tr>
                     </thead>
@@ -57,11 +56,10 @@
                                 <td><th:block th:text="${form.type}"/></td>
                                 <td><th:block th:text="${form.description}"/></td>
                                 <td><th:block th:text="${form.sort}"/></td>
-                                <td><th:block th:text="${type}"/></td>
                                 <td>
                                     <a th:href="@{'/admin/system/dict/form/'+${form.id}}" target="main" class="tablelink">修改</a>
                                     <a th:href="@{'/admin/system/dict/delete/'+${form.id}}" target="main" class="tablelink" onclick="return del()">删除</a>
-                                    <a th:href="@{'/admin/system/dict/form/'+${form.id}}" target="main" class="tablelink">添加键值</a>
+                                    <a th:href="@{'/admin/system/dict/addKey/'+${form.type}}" target="main" class="tablelink">添加键值</a>
                                 </td>
                             </tr>
                         </th:block>

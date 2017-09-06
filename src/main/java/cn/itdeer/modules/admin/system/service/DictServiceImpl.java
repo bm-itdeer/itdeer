@@ -2,6 +2,7 @@ package cn.itdeer.modules.admin.system.service;
 
 import cn.itdeer.common.base.BasePageBuilder;
 import cn.itdeer.common.config.ConfigProperties;
+import cn.itdeer.common.exception.ValidateException;
 import cn.itdeer.modules.admin.system.entity.Dict;
 import cn.itdeer.modules.admin.system.repository.DictRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,7 +35,19 @@ public class DictServiceImpl implements DictService{
      * @param dict
      */
     @Override
-    public void save(Dict dict) {
+    public void save(Dict dict) throws ValidateException{
+        if(dict.getValue()==null && "".equals(dict.getValue())){
+            throw new ValidateException("字典键值不能为空！");
+        }
+
+        if(dict.getLabel()==null && "".equals(dict.getLabel())){
+            throw new ValidateException("字典标签不能为空！");
+        }
+
+        if(dict.getType()==null && "".equals(dict.getType())){
+            throw new ValidateException("字典类型不能为空！");
+        }
+
         dictRepository.save(dict);
     }
 
