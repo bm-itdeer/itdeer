@@ -40,10 +40,11 @@ public class DictController extends BaseController{
     public String findAll(@RequestParam(value = "page", defaultValue = "0") Integer page,Model model){
         Page<Dict> pageList = dictService.findAll(page);
         model.addAttribute("pageList",pageList);
+
         List<String> list = dictService.type();
-        System.out.println(list.toString());
-        model.addAttribute("url","/admin/system/dict/findAll");
         model.addAttribute("list",list);
+
+        model.addAttribute("url","/admin/system/dict/findAll");
         return "admin/system/dict_list";
     }
 
@@ -99,10 +100,40 @@ public class DictController extends BaseController{
      * @param model
      * @return
      */
-    @RequestMapping(value = "/desLike",method = RequestMethod.GET)
+    @RequestMapping(value = "/desLike",method = RequestMethod.POST)
     public String desLike(@RequestParam(value = "page", defaultValue = "0") Integer page,@RequestParam String description, Model model){
         Page<Dict> pageList = dictService.desLike(page,description);
         model.addAttribute("pageList",pageList);
+
+        List<String> list = dictService.type();
+        model.addAttribute("list",list);
+
+        model.addAttribute("description",description);
+
+        model.addAttribute("url","/admin/system/dict/desLike?description=" + description);
+        return "admin/system/dict_list";
+    }
+
+
+    /**
+     * 按照类型查询
+     * @param page
+     * @param type
+     * @param model
+     * @return
+     */
+    @RequestMapping(value = "/findByType",method = RequestMethod.POST)
+    public String findByType(@RequestParam(value = "page", defaultValue = "0") Integer page,@RequestParam String type, Model model){
+        Page<Dict> pageList = dictService.findByType(page,type);
+        model.addAttribute("pageList",pageList);
+
+        List<String> list = dictService.type();
+        model.addAttribute("list",list);
+
+        model.addAttribute("type",type);
+        System.out.println(type+"GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGg");
+
+        model.addAttribute("url","/admin/system/dict/findByType?type=" + type);
         return "admin/system/dict_list";
     }
 

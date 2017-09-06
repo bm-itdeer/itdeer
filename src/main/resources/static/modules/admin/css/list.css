@@ -74,12 +74,12 @@ h2{font-weight:normal;}
 .uew-select .uew-icon{position:absolute;right:5px;top:10px;}
 .uew-select select{z-index:2;position:absolute;top:3px;_top:6px;cursor:pointer; height:28px;}
 
-a:focus,input[type=checkbox]:focus,input[type=radio]:focus,button:focus,select{outline:none;}
+/*a:focus,input[type=checkbox]:focus,input[type=radio]:focus,button:focus,select{outline:none;}*/
 select{opacity:0;filter:alpha(opacity=0);}
 option{overflow:auto;}
 
 .uew-icon,.ue-state-default .uew-icon{display:inline-block;width:16px;height:16px;background-image:url(../img/uew_icon.png);}
-.ue-state-hover .uew-icon{background-image:url(../img/uew_icon_hover.png);}
+/*.ue-state-hover .uew-icon{background-image:url(../img/uew_icon_hover.png);}*/
 .uew-icon-triangle-1-s{background-position:-80px 0;}
 
 .vocation,.usercity{float:left;}

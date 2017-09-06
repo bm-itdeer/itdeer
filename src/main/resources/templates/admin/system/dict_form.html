@@ -15,6 +15,7 @@
 
             <div id="form" class="tabson">
                 <form th:attr="action=@{/admin/system/dict/save}" method="post">
+                    <input type="hidden" name="id" th:value="${form != null}?${form.id}:''" />
                     <ul class="forminfo">
                         <li><label>键值:<b>*</b></label><input name="value" type="text" class="dfinput" style="width:518px;" th:value="${form != null}?${form.value}:''" /></li>
                         <li><label>标签:<b>*</b></label><input name="label" type="text" class="dfinput" style="width:518px;" th:value="${form != null}?${form.label}:''" /></li>
