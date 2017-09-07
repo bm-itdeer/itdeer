@@ -23,7 +23,7 @@ import java.util.Date;
  */
 
 @Controller
-@RequestMapping("/admin/sys/logs")
+@RequestMapping("/admin/system/logs")
 public class LogsController extends BaseController{
 
     @Autowired
@@ -40,7 +40,7 @@ public class LogsController extends BaseController{
     public String findByRemoteAddr(@RequestParam(value = "page", defaultValue = "0") Integer page,@PathVariable String ip,Model model){
         Page<Logs> pageList = logsService.findByRemoteAddr(page,ip);
         model.addAttribute("pageList",pageList);
-        return "admin/system/list_logs";
+        return "admin/system/logs_list";
     }
 
     /**
@@ -53,7 +53,7 @@ public class LogsController extends BaseController{
     public String findById(@PathVariable String id,Model model){
         Logs logs = logsService.findById(id);
         model.addAttribute("logs",logs);
-        return "admin/system/detailed_logs";
+        return "admin/system/logs_detailed";
     }
 
     /**
@@ -66,7 +66,7 @@ public class LogsController extends BaseController{
     public String findAll(@RequestParam(value = "page", defaultValue = "0") Integer page,Model model){
         Page<Logs> pageList = logsService.findAll(page);
         model.addAttribute("pageList",pageList);
-        return "admin/system/list_logs";
+        return "admin/system/logs_list";
     }
 
     /**

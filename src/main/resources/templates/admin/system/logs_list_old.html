@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>日志列表</title>
+    <link rel="stylesheet" th:href="@{/modules/admin/css/list.css}" />
+
+    <script th:src="@{/modules/admin/js/jquery.min.js}"></script>
+    <script th:src="@{/modules/admin/js/select-ui.min.js}"></script>
+    <script type="text/javascript">
+        $(document).ready(function(e) {
+            $(".select").uedSelect({
+                width: 100
+            });
+        });
+    </script>
+</head>
+
+<body>
+
+<div class="formbody">
+
+    <div id="usual1" class="usual">
+
+        <div class="itab">
+            <ul><li><a class="selected">日志列表</a></li></ul>
+        </div>
+
+        <div id="list" class="tabson">
+
+            <ul class="seachform">
+
+                <li><label>IP查询</label><input name="remoteAddr" type="text" class="scinput" /></li>
+
+                <li><label>日志类型</label>
+                    <div class="vocation">
+                        <select class="select">
+                            <option>全部</option>
+                            <option>其他</option>
+                        </select>
+                    </div>
+                </li>
+
+                <li><label>日志级别</label>
+                    <div class="vocation">
+                        <select class="select">
+                            <option>Error</option>
+                            <option>Info</option>
+                        </select>
+                    </div>
+                </li>
+
+                <li><label>&nbsp;</label><input name="" type="button" class="scbtn" value="查询" /></li>
+
+            </ul>
+
+            <table class="tablelist">
+                <thead>
+                <tr>
+                    <th>标题</th>
+                    <th>操作用户</th>
+                    <th>日志级别</th>
+                    <th>日志类型</th>
+                    <th>URI</th>
+                    <th>提交方式</th>
+                    <th>操作者IP</th>
+                    <th>操作时间</th>
+                    <th>操作</th>
+                </tr>
+                </thead>
+                <tbody>
+
+                <th:block th:each="form : ${pageList.getContent()}">
+
+                <tr>
+                    <td><th:block th:text="${form.title}"/></td>
+                    <td><th:block th:text="${form.userName}"/></td>
+                    <td><th:block th:text="${form.level}"/></td>
+                    <td><th:block th:text="${form.type}"/></td>
+                    <td><th:block th:text="${form.requestUri}"/></td>
+                    <td><th:block th:text="${form.method}"/></td>
+                    <td><th:block th:text="${form.remoteAddr}"/></td>
+                    <td><th:block th:text="${form.createDate}"/></td>
+                    <td>
+                        <a href="#" class="tablelink">查看</a>
+                        <a href="#" class="tablelink"> 删除</a>
+                    </td>
+                </tr>
+
+                </th:block>
+
+                </tbody>
+            </table>
+
+            <div class="pagin">
+                <div class="message">共<i class="blue">1256</i>条记录，当前显示第&nbsp;<i class="blue">2&nbsp;</i>页</div>
+                <ul class="paginList">
+                    <li class="paginItem">
+                        <a href="javascript:;"><span class="pagepre"></span></a>
+                    </li>
+                    <li class="paginItem">
+                        <a href="javascript:;">1</a>
+                    </li>
+                    <li class="paginItem current">
+                        <a href="javascript:;">2</a>
+                    </li>
+                    <li class="paginItem">
+                        <a href="javascript:;">3</a>
+                    </li>
+                    <li class="paginItem">
+                        <a href="javascript:;">4</a>
+                    </li>
+                    <li class="paginItem">
+                        <a href="javascript:;">5</a>
+                    </li>
+                    <li class="paginItem more">
+                        <a href="javascript:;">...</a>
+                    </li>
+                    <li class="paginItem">
+                        <a href="javascript:;">10</a>
+                    </li>
+                    <li class="paginItem">
+                        <a href="javascript:;"><span class="pagenxt"></span></a>
+                    </li>
+                </ul>
+            </div>
+
+
+        </div>
+
+    </div>
+
+
+    <script type="text/javascript">
+        $('.tablelist tbody tr:odd').addClass('odd');
+    </script>
+
+</div>
+
+</body>
+
+</html>

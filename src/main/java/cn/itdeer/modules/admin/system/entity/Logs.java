@@ -24,9 +24,9 @@ public class Logs implements Serializable {
     private String level;                           //日志级别
     private String type;                            //日志类型（请求日志/系统日志）
     private String title;                           //日志标题
-    private Date createDate;                       //创建时间
-    private String remoteAddr;                     //操作者ID
-    private String requestUri;                     //请求URI
+    private Date createDate;                        //创建时间
+    private String remoteAddr;                      //操作者ID
+    private String requestUri;                      //请求URI
     private String method;                          //请求方法
     private String params;                          //请求提交数据
 

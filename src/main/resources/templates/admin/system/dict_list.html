@@ -22,7 +22,6 @@
                     <form name="dict_typeForm" th:attr="action=@{/admin/system/dict/findByType}" method="post">
                         <li><label>字典类型</label>
                             <div class="vocation">
-                                <th:block th:value="${type}"></th:block>
                                 <select th:name="type" class="select" onchange="document.dict_typeForm.submit()">
                                     <th:block th:each="att : ${list}">
                                         <option th:value="${att}" th:text="${att}" th:selected="#{att == type}? 'selected':''"></option>

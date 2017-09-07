@@ -4,7 +4,9 @@ import cn.itdeer.common.base.BaseController;
 import cn.itdeer.common.base.BaseMessage;
 import cn.itdeer.common.exception.ValidateException;
 import cn.itdeer.modules.admin.system.entity.Dict;
+import cn.itdeer.modules.admin.system.entity.Logs;
 import cn.itdeer.modules.admin.system.service.DictService;
+import cn.itdeer.modules.admin.system.service.LogsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
@@ -30,6 +32,8 @@ public class DictController extends BaseController{
 
     @Autowired
     private DictService dictService;
+    @Autowired
+    private LogsService logsService;
 
     /**
      * 分页-全部-查询
@@ -100,6 +104,7 @@ public class DictController extends BaseController{
         } catch (ValidateException e) {
             model.addAttribute("form",dict);
             addMessage(model,new BaseMessage(e.getMessage(),"执行失败！","error"));
+            logsService.save(new Logs());
             return "admin/system/dict_form";
         }
 
