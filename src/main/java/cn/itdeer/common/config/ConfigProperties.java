@@ -13,14 +13,30 @@ import org.springframework.stereotype.Component;
 public class ConfigProperties {
 
     /**
-     *获取 后太-系统-PageSize
+     *获取 后台-系统-PageSize
      */
     @Value("${admin.system.page.size}")
     private int SystemPagesize;
-
-
     public int getSystemPagesize() {
         return SystemPagesize;
+    }
+
+    /**
+     * 获取 日志类型 字典
+     */
+    @Value("${dict.logs.type}")
+    private String DictLogsType;
+    public String getDictLogsType(){
+        return DictLogsType;
+    }
+
+    /**
+     * 获取 日志级别 字典
+     */
+    @Value("${dict.logs.level}")
+    private String DictLogsLevel;
+    public String getDictLogsLevel(){
+        return DictLogsLevel;
     }
 
 

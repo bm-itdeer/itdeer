@@ -14,32 +14,35 @@
         </div>
 
         <div id="list" class="tabson">
+            <a th:href="@{/admin/system/logs/empty}" target="main" >
+                <ul class="toolbar1" onclick="return empty()"><li><span>+</span>清空</li></ul>
+            </a>
 
             <ul class="seachform">
-                <form name="logs_type" th:attr="action=@{/admin/system/dict/findByType}" method="post">
+                <form name="logs_type" th:attr="action=@{/admin/system/logs/findByType}" method="post">
                     <li><label>日志类型</label>
                         <div class="vocation">
                             <select th:name="type" class="select" onchange="document.logs_type.submit()">
-                                <th:block th:each="att : ${list}">
-                                    <option th:value="${att}" th:text="${att}" th:selected="#{att == type}? 'selected':''"></option>
+                                <th:block th:each="att : ${dict_one}">
+                                    <option th:value="${att.value}" th:text="${att.label}"></option>
                                 </th:block>
                             </select>
                         </div>
                     </li>
                 </form>
-                <form name="logs_level" th:attr="action=@{/admin/system/dict/findByType}" method="post">
+                <form name="logs_level" th:attr="action=@{/admin/system/logs/findByLevel}" method="post">
                     <li><label>日志级别</label>
                         <div class="vocation">
-                            <select th:name="type" class="select" onchange="document.logs_level.submit()">
-                                <th:block th:each="att : ${list}">
-                                    <option th:value="${att}" th:text="${att}" th:selected="#{att == type}? 'selected':''"></option>
+                            <select th:name="level" class="select" onchange="document.logs_level.submit()">
+                                <th:block th:each="att : ${dict_two}">
+                                    <option th:value="${att.value}" th:text="${att.label}"></option>
                                 </th:block>
                             </select>
                         </div>
                     </li>
                 </form>
                 <form th:attr="action=@{/admin/system/dict/desLike}" method="post">
-                    <li><label>&nbsp;</label><input name="description" type="text" class="scinput" th:value="${description != null}?${description}:''" /></li>
+                    <li><label>&nbsp;</label><input name="ip" type="text" class="scinput" th:value="${ip != null}?${ip}:''" /></li>
                     <li><label>&nbsp;</label><input type="submit" class="scbtn" value="查询" /></li>
                 </form>
             </ul>
@@ -63,15 +66,14 @@
                     <tr>
                         <td><th:block th:text="${form.title}"/></td>
                         <td><th:block th:text="${form.userName}"/></td>
-                        <td><th:block th:text="${form.level}"/></td>
-                        <td><th:block th:text="${form.type}"/></td>
+                        <td><th:block th:text="${form.level == '1'}?'info':'error'"/></td>
+                        <td><th:block th:text="${form.type == '1'}?'系统日志':'操作日志'"/></td>
                         <td><th:block th:text="${form.requestUri}"/></td>
                         <td><th:block th:text="${form.method}"/></td>
                         <td><th:block th:text="${form.remoteAddr}"/></td>
                         <td><th:block th:text="${form.createDate}"/></td>
                         <td>
-                            <a th:href="@{'/admin/system/logs/addKey/'+${form.type}}" target="main" class="tablelink">查看详情</a>
-                            <a th:href="@{'/admin/system/logs/form/'+${form.id}}" target="main" class="tablelink">修改</a>
+                            <a th:href="@{'/admin/system/logs/findById/'+${form.id}}" target="main" class="tablelink">查看详情</a>
                             <a th:href="@{'/admin/system/logs/delete/'+${form.id}}" target="main" class="tablelink" onclick="return del()">删除</a>
                         </td>
                     </tr>

@@ -29,6 +29,13 @@ public interface DictRepository extends JpaRepository<Dict,String> {
     Page<Dict> findByType(String type, Pageable pageable);
 
     /**
+     * 按类型-查询
+     * @param type
+     * @return
+     */
+    List<Dict> findByType(String type);
+
+    /**
      * 类型-查询
      * @return
      */

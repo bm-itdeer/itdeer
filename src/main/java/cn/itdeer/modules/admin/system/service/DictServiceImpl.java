@@ -52,6 +52,15 @@ public class DictServiceImpl implements DictService{
     }
 
     /**
+     * 按类型-查询
+     * @param type
+     * @return
+     */
+    public List<Dict> findByType(String type) {
+        return dictRepository.findByType(type);
+    }
+
+    /**
      * 字典-按ID-删除
      * @param id
      */

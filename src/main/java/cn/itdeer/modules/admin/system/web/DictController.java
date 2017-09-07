@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.servlet.http.HttpServletRequest;
 import java.awt.print.Pageable;
 import java.util.List;
 
@@ -92,7 +93,7 @@ public class DictController extends BaseController{
      * @return
      */
     @RequestMapping(value = "/save",method = RequestMethod.POST)
-    public String save(Dict dict,RedirectAttributes ra,Model model){
+    public String save(Dict dict,RedirectAttributes ra,Model model,HttpServletRequest request){
         try {
             dictService.save(dict);
             addMessage(ra,new BaseMessage("字典信息保存完成","执行成功！","success"));
@@ -101,10 +102,11 @@ public class DictController extends BaseController{
             model.addAttribute("pageList",pageList);
 
             model.addAttribute("url","/admin/system/dict/findByType?type=" + dict.getType() + "&");
+            addLogs(request,new Logs("1","1","保存字典",null));
         } catch (ValidateException e) {
             model.addAttribute("form",dict);
             addMessage(model,new BaseMessage(e.getMessage(),"执行失败！","error"));
-            logsService.save(new Logs());
+            addLogs(request,new Logs("2","1","保存字典",e.getMessage()));
             return "admin/system/dict_form";
         }
 
@@ -119,9 +121,10 @@ public class DictController extends BaseController{
      * @return
      */
     @RequestMapping(value = "/delete/{id}",method = RequestMethod.GET)
-    public String delete(@PathVariable String id, Model model, RedirectAttributes ra){
+    public String delete(@PathVariable String id, Model model, RedirectAttributes ra,HttpServletRequest request){
         dictService.delete(id);
         addMessage(ra,new BaseMessage("字典信息删除完成","执行成功！","success"));
+        addLogs(request,new Logs("1","1","删除字典",null));
         return "redirect:/admin/system/dict/findAll";
     }
 

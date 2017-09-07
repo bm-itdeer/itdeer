@@ -41,6 +41,13 @@ public interface DictService {
     void delete(String id);
 
     /**
+     * 按类型-查询
+     * @param type
+     * @return
+     */
+    List<Dict> findByType(String type);
+
+    /**
      * 分页-按类型-查询
      * @param page
      * @param type

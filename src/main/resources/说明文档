@@ -1,0 +1,14 @@
+
+日志字典：
+    日志类型(type):
+        1:系统日志
+        2:操作日志
+             INSERT INTO `sys_dict` VALUES ('297ef9275e5c4da2015e5cb8dcb60000', '日志类型', '系统日志', null, '1', 'logs_type', '1');
+             INSERT INTO `sys_dict` VALUES ('297ef9275e5c4da2015e5cba4a180002', '日志类型', '操作日志', null, '2', 'logs_type', '2');
+    日志级别(level):
+        1:info
+        2:error
+             INSERT INTO `sys_dict` VALUES ('297ef9275e5c4da2015e5cbaf8340003', '日志级别', 'info', null, '1', 'logs_level', '1');
+             INSERT INTO `sys_dict` VALUES ('297ef9275e5c4da2015e5cbb49b00004', '日志级别', 'error', null, '2', 'logs_level', '2');
+
+
