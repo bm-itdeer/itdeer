@@ -1,6 +1,5 @@
 package cn.itdeer.common.base;
 
-import cn.itdeer.common.config.ConfigProperties;
 import cn.itdeer.modules.admin.system.entity.Dict;
 import cn.itdeer.modules.admin.system.entity.Logs;
 import cn.itdeer.modules.admin.system.service.DictService;

@@ -3,9 +3,7 @@ package cn.itdeer.modules.admin.system.web;
 import cn.itdeer.common.base.BaseController;
 import cn.itdeer.common.base.BaseMessage;
 import cn.itdeer.common.config.ConfigProperties;
-import cn.itdeer.modules.admin.system.entity.Dict;
 import cn.itdeer.modules.admin.system.entity.Logs;
-import cn.itdeer.modules.admin.system.service.DictService;
 import cn.itdeer.modules.admin.system.service.LogsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -19,7 +17,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.Date;
-import java.util.List;
 
 /**
  * 描述：系统-日志-Controller层
