@@ -88,14 +88,13 @@ public class DictController extends BaseController{
     /**
      * 字典-保存
      * @param dict
-     * @param ra
      * @return
      */
     @RequestMapping(value = "/save",method = RequestMethod.POST)
-    public String save(Dict dict,RedirectAttributes ra,Model model,HttpServletRequest request){
+    public String save(Dict dict,Model model,HttpServletRequest request){
         try {
             dictService.save(dict);
-            addMessage(ra,new BaseMessage("字典信息保存完成","执行成功！","success"));
+            addMessage(model,new BaseMessage("字典信息保存完成","执行成功！","success"));
 
             Page<Dict> pageList = dictService.findByType(0,dict.getType());
             model.addAttribute("pageList",pageList);

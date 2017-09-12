@@ -39,6 +39,7 @@ public class LogsController extends BaseController{
      * @param ip
      * @param model
      * @return
+     *
      */
     @RequestMapping(value = "/findByRemoteAddr",method = RequestMethod.GET)
     public String findByRemoteAddr(@RequestParam(value = "page", defaultValue = "0") Integer page,@RequestParam String ip,Model model){

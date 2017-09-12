@@ -1,20 +1,21 @@
 <!DOCTYPE html>
 <html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
-<head th:fragment="head">
+<head th:fragment="head_old">
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
     <title>系统</title>
 
     <link rel="icon" type="image/x-icon" th:href="@{/modules/admin/img/logo.ico} " />
 
-    <link rel="stylesheet" th:href="@{/modules/admin/css/bootstrap.min.css}" />
+    <link rel="stylesheet" th:href="@{/modules/admin/css/list.css}" />
 
-    <!-- toastr -->
     <link rel="stylesheet" th:href="@{/modules/admin/toastr/toastr.min.css}" />
+
     <script th:src="@{/modules/admin/js/jquery.min.js}"></script>
+
+    <script th:src="@{/modules/admin/js/select-ui.min.js}"></script>
+
     <script th:src="@{/modules/admin/toastr/toastr.min.js}"></script>
 
-    <!-- Tools -->
     <script th:src="@{/modules/admin/js/tools.js}"></script>
 
 </head>

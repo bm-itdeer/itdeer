@@ -3,79 +3,111 @@
 <head th:replace="admin/tools/head"/>
 
 <body>
+
+<div style="margin: 10px;">
     <th:block th:utext="${message}"/>
+    <div class="panel panel-default">
+        <div class="form-horizontal">
+            <div class="panel-body">
+                <div class="row">
 
-    <div class="formbody">
-
-        <div id="usual1" class="usual">
-
-            <div class="itab">
-                <ul><li><a class="selected">字典列表</a></li></ul>
-            </div>
-
-            <div id="list" class="tabson">
-                <a th:href="@{/admin/system/dict/form/null}" target="main">
-                    <ul class="toolbar1"><li><span>+</span>添加</li></ul>
-                </a>
-
-                <ul class="seachform">
                     <form name="dict_typeForm" th:attr="action=@{/admin/system/dict/findByType}" method="post">
-                        <li><label>字典类型</label>
-                            <div class="vocation">
-                                <select th:name="type" class="select" onchange="document.dict_typeForm.submit()">
-                                    <th:block th:each="att : ${list}">
-                                        <option th:value="${att}" th:text="${att}" th:selected="#{att == type}? 'selected':''"></option>
-                                    </th:block>
-                                </select>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label class="control-label col-md-4">字典类型</label>
+                                <div class="col-md-8">
+                                    <select class="form-control" th:name="type" onchange="document.dict_typeForm.submit()">
+                                        <option value="">全部</option>
+                                        <th:block th:each="att : ${list}">
+                                            <option th:value="${att}" th:text="${att}" th:selected="#{att == type}? 'selected':''"></option>
+                                        </th:block>
+                                    </select>
+                                </div>
                             </div>
-                        </li>
+                        </div>
                     </form>
-                    <form th:attr="action=@{/admin/system/dict/desLike}" method="post">
-                        <li><label>&nbsp;</label><input name="description" type="text" class="scinput" th:value="${description != null}?${description}:''" /></li>
-                        <li><label>&nbsp;</label><input type="submit" class="scbtn" value="查询" /></li>
+
+                    <form name="dict_desForm" th:attr="action=@{/admin/system/dict/desLike}" method="post">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label class="control-label col-md-4">描述查询</label>
+                                <div class="col-md-8">
+                                    <input class="form-control" name="description" type="text" th:value="${description != null}?${description}:''">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <div params="vm.searchParams" class="ng-isolate-scope">
+                                    <button type="reset" class="btn btn-danger">清空</button>
+                                    <button type="submit" class="btn btn-success">
+                                        <span class="glyphicon glyphicon-search"></span>搜索
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
                     </form>
-                </ul>
 
-                <table class="tablelist">
-                    <thead>
-                        <tr>
-                            <th>键值</th>
-                            <th>标签</th>
-                            <th>类型</th>
-                            <th>描述</th>
-                            <th>排序</th>
-                            <th>操作</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <th:block th:each="form:${pageList.getContent()}">
-                            <tr>
-                                <td><th:block th:text="${form.value}"/></td>
-                                <td><th:block th:text="${form.label}"/></td>
-                                <td><th:block th:text="${form.type}"/></td>
-                                <td><th:block th:text="${form.description}"/></td>
-                                <td><th:block th:text="${form.sort}"/></td>
-                                <td>
-                                    <a th:href="@{'/admin/system/dict/form/'+${form.id}}" target="main" class="tablelink">修改</a>
-                                    <a th:href="@{'/admin/system/dict/delete/'+${form.id}}" target="main" class="tablelink" onclick="return del()">删除</a>
-                                    <a th:href="@{'/admin/system/dict/addKey/'+${form.type}}" target="main" class="tablelink">添加键值</a>
-                                </td>
-                            </tr>
-                        </th:block>
-                    </tbody>
-                </table>
-
-                <div th:replace="admin/tools/page"></div>
-
+                </div>
             </div>
-
         </div>
-
-        <script type="text/javascript">
-            $('.tablelist tbody tr:odd').addClass('odd');
-        </script>
-
     </div>
+
+    <nav>
+        <ul class="pager">
+            <li class="previous"><span><strong>字典列表</strong></span></li>
+            <li class="next">
+                <a class="text-success" th:href="@{/admin/system/dict/form/null}" target="main"><span class="glyphicon glyphicon-plus"></span>添加</a>
+            </li>
+        </ul>
+    </nav>
+
+    <div class="panel panel-success">
+
+        <div class="panel-body">
+
+            <table class="table table-striped table-bordered table-hover">
+                <colgroup>
+                    <col style="width:10%">
+                    <col style="width:15%">
+                    <col style="width:30%">
+                    <col style="width:15%">
+                    <col style="width:10%">
+                    <col style="width:20%">
+                </colgroup>
+                <thead>
+                <tr>
+                    <th>键值</th>
+                    <th>标签</th>
+                    <th>类型</th>
+                    <th>描述</th>
+                    <th>排序</th>
+                    <th>操作</th>
+                </tr>
+                </thead>
+                <tbody ui-sortable>
+                    <th:block th:each="form:${pageList.getContent()}">
+                        <tr>
+                            <td><th:block th:text="${form.value}"/></td>
+                            <td><th:block th:text="${form.label}"/></td>
+                            <td><th:block th:text="${form.type}"/></td>
+                            <td><th:block th:text="${form.description}"/></td>
+                            <td><th:block th:text="${form.sort}"/></td>
+                            <td>
+                                <a th:href="@{'/admin/system/dict/form/'+${form.id}}" target="main" class="tablelink"><button class="btn btn-xs btn-info"><span class="glyphicon glyphicon-edit"></span>编辑</button></a>
+                                <a th:href="@{'/admin/system/dict/delete/'+${form.id}}" target="main" class="tablelink" onclick="return del()"><button class="btn btn-xs btn-danger"><span class="glyphicon glyphicon-remove"></span>删除</button></a>
+                                <a th:href="@{'/admin/system/dict/addKey/'+${form.type}}" target="main" class="tablelink"><button class="btn btn-xs btn-success">添加键值</button></a>
+                            </td>
+                        </tr>
+                    </th:block>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div th:replace="admin/tools/page"></div>
+</div>
 
 </body>
 

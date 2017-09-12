@@ -36,15 +36,15 @@ public class DictServiceImpl implements DictService{
      */
     @Override
     public void save(Dict dict) throws ValidateException{
-        if(dict.getValue()==null && "".equals(dict.getValue())){
+        if(dict.getValue()==null || "".equals(dict.getValue())){
             throw new ValidateException("字典键值不能为空！");
         }
 
-        if(dict.getLabel()==null && "".equals(dict.getLabel())){
+        if(dict.getLabel()==null || "".equals(dict.getLabel())){
             throw new ValidateException("字典标签不能为空！");
         }
 
-        if(dict.getType()==null && "".equals(dict.getType())){
+        if(dict.getType()==null || "".equals(dict.getType())){
             throw new ValidateException("字典类型不能为空！");
         }
 
