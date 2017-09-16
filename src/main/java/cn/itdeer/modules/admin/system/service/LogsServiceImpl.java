@@ -51,14 +51,14 @@ public class LogsServiceImpl implements LogsService{
     }
 
     /**
-     * 分页-按IP模糊-查询-按时间降序
+     * 分页-按标题模糊-查询-按时间降序
      * @param page
-     * @param ip
+     * @param title
      * @return
      */
     @Override
-    public Page<Logs> findByRemoteAddr(Integer page,String ip) {
-        return logsRepository.findByRemoteAddrLike(ip,BasePageBuilder.create(page,configProperties.getSystemPagesize(),sort));
+    public Page<Logs> findByTitleLike(Integer page,String title) {
+        return logsRepository.findByTitleLike(title,BasePageBuilder.create(page,configProperties.getSystemPagesize(),sort));
     }
 
     /**

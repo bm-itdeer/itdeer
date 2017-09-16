@@ -6,7 +6,6 @@ import cn.itdeer.common.exception.ValidateException;
 import cn.itdeer.modules.admin.system.entity.Dict;
 import cn.itdeer.modules.admin.system.entity.Logs;
 import cn.itdeer.modules.admin.system.service.DictService;
-import cn.itdeer.modules.admin.system.service.LogsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
@@ -32,8 +31,6 @@ public class DictController extends BaseController{
 
     @Autowired
     private DictService dictService;
-    @Autowired
-    private LogsService logsService;
 
     /**
      * 分页-全部-查询
@@ -100,11 +97,11 @@ public class DictController extends BaseController{
             model.addAttribute("pageList",pageList);
 
             model.addAttribute("url","/admin/system/dict/findByType?type=" + dict.getType() + "&");
-            addLogs(request,new Logs("1","1","保存字典",null));
+            addLogs(request,new Logs("info","系统日志","保存字典",null));
         } catch (ValidateException e) {
             model.addAttribute("form",dict);
             addMessage(model,new BaseMessage(e.getMessage(),"执行失败！","error"));
-            addLogs(request,new Logs("2","1","保存字典",e.getMessage()));
+            addLogs(request,new Logs("error","系统日志","保存字典",e.getMessage()));
             return "admin/system/dict_form";
         }
 
@@ -122,7 +119,7 @@ public class DictController extends BaseController{
     public String delete(@PathVariable String id, Model model, RedirectAttributes ra,HttpServletRequest request){
         dictService.delete(id);
         addMessage(ra,new BaseMessage("字典信息删除完成","执行成功！","success"));
-        addLogs(request,new Logs("1","1","删除字典",null));
+        addLogs(request,new Logs("info","系统日志","删除字典",null));
         return "redirect:/admin/system/dict/findAll";
     }
 
@@ -135,7 +132,7 @@ public class DictController extends BaseController{
      */
     @RequestMapping(value = "/desLike",method = RequestMethod.POST)
     public String desLike(@RequestParam(value = "page", defaultValue = "0") Integer page,@RequestParam String description, Model model){
-        Page<Dict> pageList = dictService.desLike(page,description);
+        Page<Dict> pageList = dictService.desLike(page,"%" + description + "%");
         model.addAttribute("pageList",pageList);
 
         List<String> list = dictService.type();
@@ -157,7 +154,13 @@ public class DictController extends BaseController{
      */
     @RequestMapping(value = "/findByType",method = RequestMethod.POST)
     public String findByType(@RequestParam(value = "page", defaultValue = "0") Integer page,@RequestParam String type, Model model){
-        Page<Dict> pageList = dictService.findByType(page,type);
+        Page<Dict> pageList;
+        if("all".equals(type)){
+            pageList = dictService.findAll(page);
+        }else{
+            pageList = dictService.findByType(page,type);
+        }
+
         model.addAttribute("pageList",pageList);
 
         List<String> list = dictService.type();

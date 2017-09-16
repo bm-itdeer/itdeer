@@ -77,7 +77,6 @@ public abstract class BaseController {
 
         List<Dict> dict_two =  dictService.findByType(type2);
         model.addAttribute("dict_two",dict_two);
-
     }
 
     /**

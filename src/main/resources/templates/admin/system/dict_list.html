@@ -17,9 +17,10 @@
                                 <label class="control-label col-md-4">字典类型</label>
                                 <div class="col-md-8">
                                     <select class="form-control" th:name="type" onchange="document.dict_typeForm.submit()">
-                                        <option value="">全部</option>
+                                        <option th:value="${type}" th:text="${type}" th:selected="selected" style="background-color: #5cb85c;"></option>
+                                        <option th:value="all" th:text="全部"></option>
                                         <th:block th:each="att : ${list}">
-                                            <option th:value="${att}" th:text="${att}" th:selected="#{att == type}? 'selected':''"></option>
+                                            <option th:value="${att}" th:text="${att}"></option>
                                         </th:block>
                                     </select>
                                 </div>

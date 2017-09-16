@@ -1,53 +1,53 @@
 <!DOCTYPE html>
 <html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
 
-<nav th:fragment="page">
+<div th:fragment="page">
 
-    <div class="row">
+        <div class="pull-left">
 
-        <div class="col-4" style="margin-left: 10px;">
-
-            <ul class="pager pull-left">
+            <ul class="pager">
                 <li><span>共<i class="blue"><th:block th:text="${pageList.totalElements}"/></i> 条记录 <th:block th:text="${pageList.totalPages}"/></i>页 当前显示第&nbsp;<i class="blue"><th:block th:text="${pageList.number + 1}"/>&nbsp;</i>页</span></li>
             </ul>
 
         </div>
 
-        <div class="col-8">
+        <div class="pull-right">
 
+            <ul class="pager">
 
-            <ul class="pager pull-right" style="margin-right: 10px;">
+                <div th:if="${(pageList.totalPages le 5) and (pageList.totalPages gt 0)}">
 
-                <li th:if="${pageList.hasPrevious()}" class="paginItem">
-                    <a th:href="@{${url}(page=${pageList.getNumber() - 1})}">&laquo;</a>
-                </li>
+                    <li th:if="${pageList.hasPrevious()}" >
+                        <a th:href="@{${url}(page=${pageList.getNumber() - 1})}">&laquo;</a>
+                    </li>
 
-
-                <div th:if="${(pageList.totalPages le 10) and (pageList.totalPages gt 0)}">
                     <span th:each="pg : ${#numbers.sequence(0, pageList.totalPages - 1)}">
-                        <li th:if="${pg eq pageList.getNumber()}" class="active">
-                            <a th:text="${pg+1}">${pageNumber}</a>
+                        <li th:if="${pg eq pageList.getNumber()}">
+                            <a th:text="${pg+1}" style="background-color: #EEEEEE;">${pageNumber}</a>
                         </li>
                         <li th:unless="${pg eq pageList.getNumber()}">
                             <a th:href="@{${url}(page=${pg})}" th:text="${pg+1}">${pageNumber}</a>
                         </li>
                     </span>
+
+                    <li th:if="${pageList.hasNext()}">
+                        <a th:href="@{${url}(page=${pageList.getNumber() + 1})} ">&raquo;</a>
+                    </li>
+
                 </div>
 
-                <div th:if="${pageList.totalPages gt 10}">
-                    <!--<li th:if="${pageList.number-2 ge 0}"><a th:href="@{${url}(page=${pageList.number}-2)}" th:text="${pageList.number-1}"></a></li>-->
+                <div th:if="${pageList.totalPages gt 5}">
+                    <li th:if="${pageList.hasPrevious()}" ><a th:href="@{${url}(page=${pageList.getNumber() - 1})}">&laquo;</a></li>
+                    <li th:if="${pageList.number-2 ge 0}"><a th:href="@{${url}(page=${pageList.number}-2)}" th:text="${pageList.number-1}"></a></li>
                     <li th:if="${pageList.number-1 ge 0}"><a th:href="@{${url}(page=${pageList.number}-1)}" th:text="${pageList.number}"></a></li>
-                    <li class="active"><a th:text="${pageList.number+1}">${pageNumber}</a></li>
+                    <li class="active"><a th:text="${pageList.number+1}" style="background-color: #EEEEEE;">${pageNumber}</a></li>
                     <li th:if="${pageList.number+1 lt pageList.totalPages}"><a th:href="@{${url}(page=${pageList.number}+1)}" th:text="${pageList.number+2}"></a></li>
-                    <!--<li th:if="${pageList.number+2 lt pageList.totalPages}"><a th:href="@{${url}(page=${pageList.number}+2)}" th:text="${pageList.number+3}"></a></li>-->
+                    <li th:if="${pageList.number+2 lt pageList.totalPages}"><a th:href="@{${url}(page=${pageList.number}+2)}" th:text="${pageList.number+3}"></a></li>
+                    <li th:if="${pageList.hasNext()}"><a th:href="@{${url}(page=${pageList.getNumber() + 1})} ">&raquo;</a></li>
                 </div>
 
-                <li th:if="${pageList.hasNext()}" class="paginItem">
-                    <a th:href="@{${url}(page=${pageList.getNumber() + 1})} ">&raquo;</a>
-                </li>
+
             </ul>
 
         </div>
-    </div>
-</nav>
-
+</div>

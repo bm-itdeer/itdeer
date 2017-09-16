@@ -34,23 +34,23 @@ public class LogsController extends BaseController{
     private ConfigProperties cp;
 
     /**
-     * 分页-按IP模糊-查询-按时间降序
+     * 分页-按标题模糊-查询-按时间降序
      * @param page
-     * @param ip
+     * @param title
      * @param model
      * @return
      *
      */
-    @RequestMapping(value = "/findByRemoteAddr",method = RequestMethod.GET)
-    public String findByRemoteAddr(@RequestParam(value = "page", defaultValue = "0") Integer page,@RequestParam String ip,Model model){
-        Page<Logs> pageList = logsService.findByRemoteAddr(page,ip);
+    @RequestMapping(value = "/findByTitleLike",method = RequestMethod.GET)
+    public String findByTitleLike(@RequestParam(value = "page", defaultValue = "0") Integer page,@RequestParam String title,Model model){
+        Page<Logs> pageList = logsService.findByTitleLike(page,"%" + title + "%");
         model.addAttribute("pageList",pageList);
 
         addDict(model,cp.getDictLogsType(),cp.getDictLogsLevel());
 
-        model.addAttribute("ip",ip);
+        model.addAttribute("title",title);
 
-        model.addAttribute("url","/admin/system/logs/findByRemoteAddr?ip=" + ip + "&");
+        model.addAttribute("url","/admin/system/logs/findByTitleLike?title=" + title);
         return "admin/system/logs_list";
     }
 
@@ -93,7 +93,7 @@ public class LogsController extends BaseController{
     public String delete(@PathVariable String id, RedirectAttributes ra,HttpServletRequest request,Model model){
         logsService.delete(id);
         addMessage(ra,new BaseMessage("日志删除完成","执行成功！","success"));
-        addLogs(request,new Logs("1","1","删除日志",null));
+        addLogs(request,new Logs("info","系统日志","删除日志",null));
         return "redirect:/admin/system/logs/findAll";
     }
 
@@ -105,7 +105,7 @@ public class LogsController extends BaseController{
     public String empty(RedirectAttributes ra,HttpServletRequest request){
         logsService.empty();
         addMessage(ra,new BaseMessage("日志清除完成","执行成功！","success"));
-        addLogs(request,new Logs("1","1","清空日志",null));
+        addLogs(request,new Logs("info","系统日志","清空日志",null));
         return "redirect:/admin/system/logs/findAll";
     }
 
@@ -116,14 +116,20 @@ public class LogsController extends BaseController{
      * @param model
      * @return
      */
-    @RequestMapping(value = "/findByType",method = RequestMethod.POST)
+    @RequestMapping(value = "/findByType",method = RequestMethod.GET)
     public String findByType(@RequestParam(value = "page", defaultValue = "0") Integer page,@RequestParam String type,Model model){
-        Page<Logs> pageList = logsService.findByType(page,type);
+        Page<Logs> pageList;
+        if("all".equals(type)){
+            pageList = logsService.findAll(page);
+        }else{
+            pageList = logsService.findByType(page,type);
+        }
         model.addAttribute("pageList",pageList);
 
         addDict(model,cp.getDictLogsType(),cp.getDictLogsLevel());
+        model.addAttribute("type",type);
 
-        model.addAttribute("url","/admin/system/logs/findByType?type=" + type + "&");
+        model.addAttribute("url","/admin/system/logs/findByType?type=" + type);
 
         return "admin/system/logs_list";
     }
@@ -135,14 +141,21 @@ public class LogsController extends BaseController{
      * @param model
      * @return
      */
-    @RequestMapping(value = "/findByLevel",method = RequestMethod.POST)
+    @RequestMapping(value = "/findByLevel",method = RequestMethod.GET)
     public String findByLevel(@RequestParam(value = "page", defaultValue = "0") Integer page,@RequestParam String level,Model model){
-        Page<Logs> pageList = logsService.findByLevel(page,level);
+        Page<Logs> pageList;
+        if("all".equals(level)){
+            pageList = logsService.findAll(page);
+        }else{
+            pageList = logsService.findByLevel(page,level);
+        }
+
         model.addAttribute("pageList",pageList);
 
         addDict(model,cp.getDictLogsType(),cp.getDictLogsLevel());
+        model.addAttribute("level",level);
 
-        model.addAttribute("url","/admin/system/logs/findByLevel?level=" + level + "&");
+        model.addAttribute("url","/admin/system/logs/findByLevel?level=" + level);
 
         return "admin/system/logs_list";
     }
@@ -162,7 +175,7 @@ public class LogsController extends BaseController{
 
         addDict(model,cp.getDictLogsType(),cp.getDictLogsLevel());
 
-        model.addAttribute("url","/admin/system/logs/findByCreateDate?startDate=" + startDate + "&endDate=" + endDate + "&");
+        model.addAttribute("url","/admin/system/logs/findByCreateDate?startDate=" + startDate + "&endDate=" + endDate);
 
         return "admin/system/logs_list";
     }

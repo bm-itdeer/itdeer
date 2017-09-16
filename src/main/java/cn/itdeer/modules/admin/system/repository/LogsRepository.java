@@ -44,11 +44,11 @@ public interface LogsRepository extends JpaRepository<Logs,String> {
     Page<Logs> findByCreateDateAfterAndCreateDateBefore(Date startDate,Date endDate,Pageable pageable);
 
     /**
-     * 分页-按IP模糊-查询-按时间降序
-     * @param ip
+     * 分页-按标题模糊-查询-按时间降序
+     * @param title
      * @param pageable
      * @return
      */
-    Page<Logs> findByRemoteAddrLike(String ip,Pageable pageable);
+    Page<Logs> findByTitleLike(String title,Pageable pageable);
 
 }

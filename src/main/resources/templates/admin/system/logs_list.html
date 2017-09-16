@@ -11,15 +11,16 @@
             <div class="panel-body">
                 <div class="row">
 
-                    <form name="dict_typeForm" th:attr="action=@{/admin/system/dict/findByType}" method="post">
-                        <div class="col-md-4">
+                    <form name="dict_typeForm" th:attr="action=@{/admin/system/logs/findByType}" method="get">
+                        <div class="col-md-3">
                             <div class="form-group">
-                                <label class="control-label col-md-4">字典类型</label>
+                                <label class="control-label col-md-4">日志类型</label>
                                 <div class="col-md-8">
                                     <select class="form-control" th:name="type" onchange="document.dict_typeForm.submit()">
-                                        <option value="">全部</option>
-                                        <th:block th:each="att : ${list}">
-                                            <option th:value="${att}" th:text="${att}" th:selected="#{att == type}? 'selected':''"></option>
+                                        <option th:value="${type}" th:text="${type}" th:selected="selected" style="background-color: #5cb85c;"></option>
+                                        <option th:value="all" th:text="全部"></option>
+                                        <th:block th:each="att : ${dict_one}">
+                                            <option th:value="${att.label}" th:text="${att.label}"></option>
                                         </th:block>
                                     </select>
                                 </div>
@@ -27,17 +28,34 @@
                         </div>
                     </form>
 
-                    <form name="dict_desForm" th:attr="action=@{/admin/system/dict/desLike}" method="post">
-                        <div class="col-md-4">
+                    <form name="dict_levelForm" th:attr="action=@{/admin/system/logs/findByLevel}" method="get">
+                        <div class="col-md-3">
                             <div class="form-group">
-                                <label class="control-label col-md-4">描述查询</label>
+                                <label class="control-label col-md-4">日志级别</label>
                                 <div class="col-md-8">
-                                    <input class="form-control" name="description" type="text" th:value="${description != null}?${description}:''">
+                                    <select class="form-control" th:name="level" onchange="document.dict_levelForm.submit()">
+                                        <option th:value="${level}" th:text="${level}" th:selected="selected" style="background-color: #5cb85c;"></option>
+                                        <option th:value="all" th:text="全部"></option>
+                                        <th:block th:each="att : ${dict_two}">
+                                            <option th:value="${att.label}" th:text="${att.label}"></option>
+                                        </th:block>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+
+                    <form name="dict_titleForm" th:attr="action=@{/admin/system/logs/findByTitleLike}" method="get">
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label class="control-label col-md-4">标题查询</label>
+                                <div class="col-md-8">
+                                    <input class="form-control" name="title" type="text" th:value="${title != null}?${title}:''">
                                 </div>
                             </div>
                         </div>
 
-                        <div class="col-md-4">
+                        <div class="col-md-3">
                             <div class="form-group">
                                 <div params="vm.searchParams" class="ng-isolate-scope">
                                     <button type="reset" class="btn btn-danger">清空</button>
@@ -56,9 +74,9 @@
 
     <nav>
         <ul class="pager">
-            <li class="previous"><span><strong>字典列表</strong></span></li>
+            <li class="previous"><span><strong>日志列表</strong></span></li>
             <li class="next">
-                <a class="text-success" th:href="@{/admin/system/dict/form/null}" target="main"><span class="glyphicon glyphicon-plus"></span>添加</a>
+                <a class="text-success" th:href="@{/admin/system/logs/empty}" target="main" onclick="return empty()">清空日志</a>
             </li>
         </ul>
     </nav>
@@ -73,11 +91,11 @@
                     <col style="width:5%">
                     <col style="width:5%">
                     <col style="width:10%">
-                    <col style="width:20%">
+                    <col style="width:25%">
                     <col style="width:5%">
                     <col style="width:15%">
                     <col style="width:15%">
-                    <col style="width:15%">
+                    <col style="width:10%">
                 </colgroup>
                 <thead>
                 <tr>
@@ -97,15 +115,14 @@
                         <tr>
                             <td><th:block th:text="${form.title}"/></td>
                             <td><th:block th:text="${form.userName}"/></td>
-                            <td><th:block th:text="${form.level == '1'}?'info':'error'"/></td>
-                            <td><th:block th:text="${form.type == '1'}?'系统日志':'操作日志'"/></td>
+                            <td><th:block th:text="${form.level == 'info'}?'info':'error'"/></td>
+                            <td><th:block th:text="${form.type == '系统日志'}?'系统日志':'操作日志'"/></td>
                             <td><th:block th:text="${form.requestUri}"/></td>
                             <td><th:block th:text="${form.method}"/></td>
                             <td><th:block th:text="${form.remoteAddr}"/></td>
                             <td><th:block th:text="${form.createDate}"/></td>
                             <td>
                                 <a th:href="@{'/admin/system/logs/delete/'+${form.id}}" target="main" class="tablelink" onclick="return del()"><button class="btn btn-xs btn-danger"><span class="glyphicon glyphicon-remove"></span>删除</button></a>
-                                <a th:href="@{'/admin/system/logs/findById/'+${form.id}}" target="main" class="tablelink"><button class="btn btn-xs btn-success">查看详情</button></a>
                             </td>
                         </tr>
                     </th:block>

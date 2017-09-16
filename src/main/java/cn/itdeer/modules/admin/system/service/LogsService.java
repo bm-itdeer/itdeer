@@ -14,12 +14,12 @@ public interface LogsService {
 
 
     /**
-     * 分页-按IP模糊-查询-按时间降序
+     * 分页-按标题模糊-查询-按时间降序
      * @param page
-     * @param ip
+     * @param title
      * @return
      */
-    Page<Logs> findByRemoteAddr(Integer page,String ip);
+    Page<Logs> findByTitleLike(Integer page,String title);
 
     /**
      * 日志-按ID-查询
