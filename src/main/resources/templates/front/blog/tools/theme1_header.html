@@ -2,15 +2,18 @@
 <html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
 
 
-<header th:fragment="header" id="header" class="header bg-white">
+
+<header th:fragment="theme1_header" id="header" class="header bg-white">
     <div class="navbar-container">
         <a href="" class="navbar-logo">
             <img th:src="@{/modules/front/blog/theme1/img/logo.png}" alt=""/>
         </a>
         <div class="navbar-menu">
-            <a href="#">归档</a>
-            <a href="#">友链</a>
-            <a href="#">关于</a>
+            <a th:href="@{/blog}">主页</a>
+            <a th:href="@{/blog/archives}">归档</a>
+            <a th:href="@{/blog/history}">历史</a>
+            <a th:href="@{/blog/links}">友链</a>
+            <a th:href="@{/blog/about}">关于</a>
         </div>
         <div class="navbar-search" onclick="">
             <span class="icon-search"></span>

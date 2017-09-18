@@ -1,4 +1,13 @@
-#include('./header.html', {title: '文章归档'})
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="front/blog/tools/theme1_head"></head>
+
+<body class="bg-grey">
+
+<div th:replace="front/blog/tools/theme1_header"></div>
+
+
 <div class="main-content archive-page clearfix">
     <div class="categorys-item">
         #for(archive : archives)
@@ -24,4 +33,9 @@
         #end
     </div>
 </div>
-#include('./footer.html')
+
+
+<div th:replace="front/blog/tools/theme1_footer"></div>
+
+</body>
+</html>

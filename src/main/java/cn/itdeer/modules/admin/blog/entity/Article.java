@@ -40,7 +40,7 @@ public class Article implements Serializable {
     private String pictureUrl;                              //封面图片地址
 
     private int commentNum;                                 //评论数
-    private int hits;                                       //点击数
+    private int hits;                                        //点击数
 
     private String type;                                    //文章类型
     private String category;                                //文章类别

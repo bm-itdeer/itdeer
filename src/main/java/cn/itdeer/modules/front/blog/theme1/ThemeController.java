@@ -19,4 +19,24 @@ public class ThemeController {
         return "front/blog/theme1/index";
     }
 
+    @RequestMapping(value = "/history",method = RequestMethod.GET)
+    public String history(){
+        return "front/blog/theme1/history";
+    }
+
+    @RequestMapping(value = "/links",method = RequestMethod.GET)
+    public String links(){
+        return "front/blog/theme1/links";
+    }
+
+    @RequestMapping(value = "/about",method = RequestMethod.GET)
+    public String about(){
+        return "front/blog/theme1/about";
+    }
+
+    @RequestMapping(value = "/archives",method = RequestMethod.GET)
+    public String archives(){
+        return "front/blog/theme1/archives";
+    }
+
 }
