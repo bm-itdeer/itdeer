@@ -5,5 +5,5 @@ package cn.itdeer.modules.admin.blog.repository;
  * 创建人：Itdeer
  * 创建时间：2017/8/18 0:06
  */
-public class LinksRepository {
+public interface LinksRepository {
 }

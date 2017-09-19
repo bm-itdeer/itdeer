@@ -16,4 +16,6 @@ public interface ArticleService {
      * @return
      */
     Page<Article> findAll(Integer page);
+
+    Article findById(String id);
 }
