@@ -45,5 +45,11 @@ public class ArticleController {
         return "admin/blog/article_form";
     }
 
+    @RequestMapping(value = "/edit/{id}",method = RequestMethod.GET)
+    public String edit(@PathVariable String id, Model model){
+
+        return "admin/blog/article_content";
+    }
+
 
 }

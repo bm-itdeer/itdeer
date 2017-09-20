@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
+    <head th:replace="admin/tools/head"/>
+
+
+
+</head>
+<body>
+
+<form th:attr="action=@{/admin/blog/article/save}" method="post">
+    <div id="editormd-content">
+        <textarea class="editormd-markdown-textarea" name="content">${form.content}</textarea>
+        <textarea class="editormd-html-textarea" name="htmlContent">${form.htmlContent}</textarea>
+    </div>
+    <input type="submit" class="btn" value="确定" />
+</form>
+
+<script>
+    $(function(){
+        editormd({
+            id:"editormd-content",
+            width:"100%",
+            height  : 600,
+            syncScrolling : "single",
+            path: "<%=basePath%>style/admin/makedown/lib/",
+            imageUpload : true,
+            imageFormats : ["jpg", "jpeg", "gif", "png", "bmp", "webp"],
+            imageUploadURL : "<%=basePath%>/admin/article/uploadfile",
+            emoji:true,
+            previewTheme : "dark",
+            saveHTMLToTextarea : true
+        });
+    });
+</script>
+
+</body>
+</html>
