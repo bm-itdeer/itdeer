@@ -1,28 +1,50 @@
 <!DOCTYPE html>
 <html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
-    <head th:replace="admin/tools/head"/>
 
+<head>
+    <title>正文</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
 
+    <link rel="icon" type="image/x-icon" th:href="@{/modules/admin/img/logo.ico} " />
 
+    <link rel="stylesheet" th:href="@{/modules/admin/css/bootstrap.min.css}" />
+
+    <link rel="stylesheet" th:href="@{/modules/admin/makedown/css/style.css}" />
+    <link rel="stylesheet" th:href="@{/modules/admin/makedown/css/editormd.min.css}" />
 </head>
+
 <body>
 
-<form th:attr="action=@{/admin/blog/article/save}" method="post">
-    <div id="editormd-content">
-        <textarea class="editormd-markdown-textarea" name="content">${form.content}</textarea>
-        <textarea class="editormd-html-textarea" name="htmlContent">${form.htmlContent}</textarea>
-    </div>
-    <input type="submit" class="btn" value="确定" />
-</form>
+<nav>
+    <ul class="pager">
+        <li class="previous"><span><strong>文章列表</strong></span></li>
+        <li class="next">
+            <a class="text-success" th:href="@{/admin/blog/article/form/null}" target="main"><span class="glyphicon glyphicon-plus"></span>发布文章</a>
+        </li>
+    </ul>
+</nav>
 
-<script>
+<div class="panel panel-success">
+    <form th:attr="action=@{/admin/blog/article/save}" method="post">
+        <div id="makedown-content">
+            <textarea class="editormd-markdown-textarea" name="content"></textarea>
+            <textarea class="editormd-html-textarea" name="htmlContent"></textarea>
+        </div>
+    </form>
+</div>
+
+<script th:src="@{/modules/admin/makedown/js/jquery.min.js}"></script>
+<script th:src="@{/modules/admin/makedown/js/editormd.min.js}"></script>
+
+<script type="text/javascript">
     $(function(){
         editormd({
-            id:"editormd-content",
+            id:"makedown-content",
             width:"100%",
-            height  : 600,
+            height  : 640,
             syncScrolling : "single",
-            path: "<%=basePath%>style/admin/makedown/lib/",
+            path: "/modules/admin/makedown/lib/",
             imageUpload : true,
             imageFormats : ["jpg", "jpeg", "gif", "png", "bmp", "webp"],
             imageUploadURL : "<%=basePath%>/admin/article/uploadfile",
