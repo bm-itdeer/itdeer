@@ -1,7 +1,13 @@
 package cn.itdeer.modules.admin.blog.web;
 
+import cn.itdeer.common.base.BaseController;
+import cn.itdeer.common.base.BaseMessage;
+import cn.itdeer.common.exception.ValidateException;
 import cn.itdeer.modules.admin.blog.entity.Article;
 import cn.itdeer.modules.admin.blog.service.ArticleService;
+import cn.itdeer.modules.admin.system.entity.Dict;
+import cn.itdeer.modules.admin.system.entity.Logs;
+import cn.itdeer.modules.admin.system.service.DictService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
@@ -10,6 +16,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 /**
  * 描述：博客-文章-Controller层
@@ -18,10 +28,13 @@ import org.springframework.web.bind.annotation.RequestParam;
  */
 @Controller
 @RequestMapping("/admin/blog/article")
-public class ArticleController {
+public class ArticleController extends BaseController{
 
     @Autowired
     private  ArticleService articleService;
+
+    @Autowired
+    private DictService dictService;
 
     @RequestMapping(value = "/findAll",method = RequestMethod.GET)
     public String findAll(@RequestParam(value = "page", defaultValue = "0") Integer page, Model model){
@@ -42,13 +55,57 @@ public class ArticleController {
             model.addAttribute("form",form);
         }
 
+        List<Dict> article_type = dictService.findByType("article_type");
+        model.addAttribute("article_type",article_type);
+
+        List<Dict> article_category = dictService.findByType("article_category");
+        model.addAttribute("article_category",article_category);
+
+
         return "admin/blog/article_form";
     }
 
     @RequestMapping(value = "/edit/{id}",method = RequestMethod.GET)
     public String edit(@PathVariable String id, Model model){
-
+        Article article = articleService.findById(id);
+        model.addAttribute("form",article);
         return "admin/blog/article_content";
+    }
+
+    @RequestMapping(value = "/edit",method = RequestMethod.POST)
+    public String edit(Article article,RedirectAttributes ra, Model model,HttpServletRequest request){
+        try {
+            articleService.edit(article);
+            addMessage(ra,new BaseMessage("文章编辑成功","执行成功！","success"));
+            addLogs(request,new Logs("info","操作日志","文章编辑成功",null));
+        } catch (ValidateException e) {
+            model.addAttribute("form",article);
+            addMessage(model,new BaseMessage(e.getMessage(),"执行失败！","error"));
+            addLogs(request,new Logs("error","操作日志","文章编辑失败",e.getMessage()));
+            return "admin/blog/article_content";
+        }
+        return "redirect:/admin/blog/article/findAll";
+    }
+
+
+    /**
+     * 文章-保存
+     * @param article
+     * @return
+     */
+    @RequestMapping(value = "/save",method = RequestMethod.POST)
+    public String save(Article article, Model model, RedirectAttributes ra,HttpServletRequest request){
+        try {
+            articleService.save(article);
+            addMessage(ra,new BaseMessage("文章添加成功","执行成功！","success"));
+            addLogs(request,new Logs("info","操作日志","文章添加成功",null));
+        } catch (ValidateException e) {
+            model.addAttribute("form",article);
+            addMessage(model,new BaseMessage(e.getMessage(),"执行失败！","error"));
+            addLogs(request,new Logs("error","操作日志","文章添加失败",e.getMessage()));
+            return "admin/blog/article_form";
+        }
+        return "redirect:/admin/blog/article/findAll";
     }
 
 

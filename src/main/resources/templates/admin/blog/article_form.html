@@ -5,12 +5,11 @@
 <body>
     <th:block th:utext="${message}"/>
 
-
     <div style="margin: 10px;">
 
         <div class="panel panel-success">
             <div class="panel-heading">
-                <div class="panel-title"><span><th:block th:text="${form != null}?'文章修改':'文章发布'"</span></div>
+                <div class="panel-title"><span><th:block th:text="${form != null}?'文章修改':'文章发布'"></th:block></span></div>
             </div>
 
             <div class="panel-body">
@@ -28,19 +27,23 @@
                         <label class="col-sm-2 control-label">允许评论:</label>
                         <div class="col-sm-8">
                             <div class="radio radio-info radio-inline">
-                                <input type="radio" id="inlineRadio1" th:value="${form != null}?${form.ifComment}:''" name="ifComment" checked="">是
+                                <input type="radio" id="inlineRadio1" th:value="${form != null}?${form.ifComment}:'true'" name="ifComment" checked="">是
                             </div>
                             <div class="radio radio-inline">
-                                <input type="radio" id="inlineRadio2" th:value="${form != null}?${form.ifComment}:''" name="ifComment">否
+                                <input type="radio" id="inlineRadio2" th:value="${form != null}?${form.ifComment}:'false'" name="ifComment">否
                             </div>
                         </div>
                     </div>
+
 
                     <div class="form-group">
                         <label class="col-sm-2 control-label">文章类型:</label>
                         <div class="col-sm-8">
                             <select class="form-control" th:name="type">
-                                <option th:value="all" th:text="全部"></option>
+                                <option th:value="default" th:text="默认" th:selected="selected"></option>
+                                <th:block th:each="att : ${article_type}">
+                                    <option th:value="${att.value}" th:text="${att.label}"></option>
+                                </th:block>
                             </select>
                         </div>
                     </div>
@@ -49,7 +52,10 @@
                         <label class="col-sm-2 control-label">文章类别:</label>
                         <div class="col-sm-8">
                             <select class="form-control" th:name="category">
-                                <option th:value="all" th:text="全部"></option>
+                                <option th:value="default" th:text="默认" th:selected="selected"></option>
+                                <th:block th:each="att : ${article_category}">
+                                    <option th:value="${att.value}" th:text="${att.label}"></option>
+                                </th:block>
                             </select>
                         </div>
                     </div>
@@ -57,14 +63,14 @@
                     <div class="form-group">
                         <label class="col-sm-2 control-label">文章标签:</label>
                         <div class="col-sm-8">
-                            <input name="tags" id="tags" type="text" class="form-control" placeholder="请填写文章标签" th:value="${form != null}?${form.tags}:''"/>
+                            <input type="text" name="tags" class="form-control" th:value="${form != null}?${form.tags}:''" data-role="tagsinput" placeholder="标签 ,号分隔" />
                         </div>
                     </div>
 
                     <div class="form-group">
                         <label class="col-sm-2 control-label">文章封面:</label>
                         <div class="col-sm-8">
-                            <input name="pictureId" type="text" class="form-control" placeholder="请选择文章封面" th:value="${form != null}?${form.pictureId}:''"/>
+                            <input type="text" id="pictureId" name="pictureId" class="form-control" placeholder="请选择文章封面" data-toggle="modal" data-target="#myModal" th:value="${form != null}?${form.pictureId}:''"/>
                         </div>
                     </div>
 
@@ -80,6 +86,10 @@
         </div>
     </div>
 
+    <head th:replace="admin/tools/picture"/>
+
+    <script th:src="@{/modules/admin/js/jquery.min.js}"></script>
+    <script th:src="@{/modules/admin/js/bootstrap-tagsinput.min.js}"></script>
 
 </body>
 

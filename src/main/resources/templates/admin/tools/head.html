@@ -9,12 +9,29 @@
 
     <link rel="stylesheet" th:href="@{/modules/admin/css/bootstrap.min.css}" />
 
+
     <!-- toastr -->
     <link rel="stylesheet" th:href="@{/modules/admin/toastr/toastr.min.css}" />
     <script th:src="@{/modules/admin/js/jquery.min.js}"></script>
     <script th:src="@{/modules/admin/toastr/toastr.min.js}"></script>
 
+    <script th:src="@{/modules/admin/js/bootstrap.min.js}"></script>
+
     <!-- Tools -->
     <script th:src="@{/modules/admin/js/tools.js}"></script>
+
+
+
+    <link rel="stylesheet" th:href="@{/modules/admin/css/bootstrap-tagsinput.css}" />
+    <script th:src="@{/modules/admin/js/bootstrap-tagsinput.min.js}"></script>
+    <style>
+        #tags_addTag input {width: 100%;  }
+        .thumbnail img{width: 110px; height: 74px;  }
+    </style>
+
+    <script>
+        function test(id){$("#pictureId").val(id);}
+        function cancel(){$("#pictureId").val("");}
+    </script>
 
 </head>

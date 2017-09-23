@@ -20,16 +20,17 @@
     <ul class="pager">
         <li class="previous"><span><strong>文章列表</strong></span></li>
         <li class="next">
-            <a class="text-success" th:href="@{/admin/blog/article/form/null}" target="main"><span class="glyphicon glyphicon-plus"></span>发布文章</a>
+            <a class="text-success" onclick="document.getElementById('content_form').submit();return false"><span class="glyphicon glyphicon-plus"></span>保存文章</a>
         </li>
     </ul>
 </nav>
 
 <div class="panel panel-success">
-    <form th:attr="action=@{/admin/blog/article/save}" method="post">
+    <form th:attr="action=@{/admin/blog/article/edit}" method="post" id="content_form">
+        <input type="hidden" name="id" th:value="${form.id}">
         <div id="makedown-content">
-            <textarea class="editormd-markdown-textarea" name="content"></textarea>
-            <textarea class="editormd-html-textarea" name="htmlContent"></textarea>
+            <textarea class="editormd-markdown-textarea" name="textContent"><th:block th:text="${form.textContent}"></th:block></textarea>
+            <textarea class="editormd-html-textarea" name="htmlContent"><th:block th:text="${form.htmlContent}"></th:block></textarea>
         </div>
     </form>
 </div>

@@ -26,7 +26,7 @@ public class LogsServiceImpl implements LogsService{
     private ConfigProperties configProperties;
 
     //定义时间降序Sort
-    private Sort sort = new Sort(Sort.Direction.ASC,"createDate");
+    private Sort sort = new Sort(Sort.Direction.DESC,"createDate");
 
     /**
      * 分页-按类型(Type)查询-按照时间降序

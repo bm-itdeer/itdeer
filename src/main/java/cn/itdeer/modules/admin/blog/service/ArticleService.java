@@ -1,5 +1,6 @@
 package cn.itdeer.modules.admin.blog.service;
 
+import cn.itdeer.common.exception.ValidateException;
 import cn.itdeer.modules.admin.blog.entity.Article;
 import org.springframework.data.domain.Page;
 
@@ -18,4 +19,8 @@ public interface ArticleService {
     Page<Article> findAll(Integer page);
 
     Article findById(String id);
+
+    void save(Article article) throws ValidateException;
+
+    void edit(Article article) throws  ValidateException;
 }

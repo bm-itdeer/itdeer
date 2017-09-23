@@ -39,5 +39,22 @@ public class ConfigProperties {
         return DictLogsLevel;
     }
 
+    /**
+     * 获取 系统默认图片ＩＤ
+     */
+    @Value("${system.default.picture.id}")
+    private String SystemDefaultPictureId;
+    public String getSystemDefaultPictureId(){
+        return SystemDefaultPictureId;
+    }
+
+    /**
+     * 获取 系统默认图片存储路径
+     */
+    @Value("${system.default.picture.path}")
+    private String SystemDefaultPicturePath;
+    public String getSystemDefaultPicturePath(){
+        return SystemDefaultPicturePath;
+    }
 
 }

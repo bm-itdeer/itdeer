@@ -27,6 +27,7 @@ public class Picture implements Serializable {
     private String name;                            //图片名称
     private String groups;                          //图片所属组
     private String type;                            //图片类型
+    private String url;                             //图片路径
 
     private Date createDate;                        //创建时间
     private Date editDate;                          //修改时间
@@ -98,6 +99,14 @@ public class Picture implements Serializable {
         this.userName = userName;
     }
 
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
     @Override
     public String toString() {
         return "Picture{" +
@@ -105,6 +114,7 @@ public class Picture implements Serializable {
                 ", name='" + name + '\'' +
                 ", groups='" + groups + '\'' +
                 ", type='" + type + '\'' +
+                ", url='" + url + '\'' +
                 ", createDate=" + createDate +
                 ", editDate=" + editDate +
                 ", userId='" + userId + '\'' +
