@@ -97,11 +97,11 @@ public class DictController extends BaseController{
             model.addAttribute("pageList",pageList);
 
             model.addAttribute("url","/admin/system/dict/findByType?type=" + dict.getType() + "&");
-            addLogs(request,new Logs("info","系统日志","保存字典",null));
+            //addLogs(request,new Logs("info","系统日志","保存字典",null));
         } catch (ValidateException e) {
             model.addAttribute("form",dict);
             addMessage(model,new BaseMessage(e.getMessage(),"执行失败！","error"));
-            addLogs(request,new Logs("error","系统日志","保存字典",e.getMessage()));
+           // addLogs(request,new Logs("error","系统日志","保存字典",e.getMessage()));
             return "admin/system/dict_form";
         }
 
@@ -119,7 +119,7 @@ public class DictController extends BaseController{
     public String delete(@PathVariable String id, Model model, RedirectAttributes ra,HttpServletRequest request){
         dictService.delete(id);
         addMessage(ra,new BaseMessage("字典信息删除完成","执行成功！","success"));
-        addLogs(request,new Logs("info","系统日志","删除字典",null));
+       // addLogs(request,new Logs("info","系统日志","删除字典",null));
         return "redirect:/admin/system/dict/findAll";
     }
 

@@ -15,50 +15,42 @@ import java.util.Date;
 @Entity
 @Table(name="sys_logs")
 public class Logs implements Serializable {
+
     @Id
     @GenericGenerator(name="id", strategy="uuid")
     @GeneratedValue(generator="id")
-    private String id;                              //日志ID
+    private String id;                                      //日志ID
 
-    private String userName;                        //操作人
+    private String url;                                     //请求URL
+    private String method;                                  //请求方式
+    private String ip;                                      //请求者IP
+    private String classMethod;                            //请求方法
+    private String params;                                  //请求参数
 
-    private String level;                           //日志级别
-    private String type;                            //日志类型（请求日志/系统日志）
-    private String title;                           //日志标题
+    private String menu;                                    //操作菜单
+    private String level;                                   //日志级别
+    private String type;                                    //日志类型（请求日志/系统日志）
 
-    private Date createDate;                       //创建时间
-    private String remoteAddr;                     //操作者ID
-    private String requestUri;                     //请求URI
-    private String method;                          //请求方法
-    private String params;                          //请求提交数据
+    private String userId;                                  //操作人ID
+    private String userName;                                //操作人
+    private Date createDate;                                //创建时间
 
     @Column(name = "exceptions",columnDefinition="TEXT")
-    private String exceptions;                      //异常信息
+    private String exceptions;                              //异常信息
 
-    public Logs(String level, String type, String title,String exceptions) {
+    public Logs(String url, String method, String ip, String classMethod, String params, String menu, String level, String type, String userId, String userName, Date createDate, String exceptions) {
+        this.url = url;
+        this.method = method;
+        this.ip = ip;
+        this.classMethod = classMethod;
+        this.params = params;
+        this.menu = menu;
         this.level = level;
         this.type = type;
-        this.title = title;
-        this.exceptions = exceptions;
-    }
-
-    public Logs() {
-    }
-
-    public String getLevel() {
-        return level;
-    }
-
-    public void setLevel(String level) {
-        this.level = level;
-    }
-
-    public String getUserName() {
-        return userName;
-    }
-
-    public void setUserName(String userName) {
+        this.userId = userId;
         this.userName = userName;
+        this.createDate = createDate;
+        this.exceptions = exceptions;
     }
 
     public String getId() {
@@ -69,44 +61,12 @@ public class Logs implements Serializable {
         this.id = id;
     }
 
-    public String getType() {
-        return type;
+    public String getUrl() {
+        return url;
     }
 
-    public void setType(String type) {
-        this.type = type;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public Date getCreateDate() {
-        return createDate;
-    }
-
-    public void setCreateDate(Date createDate) {
-        this.createDate = createDate;
-    }
-
-    public String getRemoteAddr() {
-        return remoteAddr;
-    }
-
-    public void setRemoteAddr(String remoteAddr) {
-        this.remoteAddr = remoteAddr;
-    }
-
-    public String getRequestUri() {
-        return requestUri;
-    }
-
-    public void setRequestUri(String requestUri) {
-        this.requestUri = requestUri;
+    public void setUrl(String url) {
+        this.url = url;
     }
 
     public String getMethod() {
@@ -117,12 +77,76 @@ public class Logs implements Serializable {
         this.method = method;
     }
 
+    public String getIp() {
+        return ip;
+    }
+
+    public void setIp(String ip) {
+        this.ip = ip;
+    }
+
+    public String getClassMethod() {
+        return classMethod;
+    }
+
+    public void setClassMethod(String classMethod) {
+        this.classMethod = classMethod;
+    }
+
     public String getParams() {
         return params;
     }
 
     public void setParams(String params) {
         this.params = params;
+    }
+
+    public String getMenu() {
+        return menu;
+    }
+
+    public void setMenu(String menu) {
+        this.menu = menu;
+    }
+
+    public String getLevel() {
+        return level;
+    }
+
+    public void setLevel(String level) {
+        this.level = level;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public Date getCreateDate() {
+        return createDate;
+    }
+
+    public void setCreateDate(Date createDate) {
+        this.createDate = createDate;
     }
 
     public String getExceptions() {
@@ -137,15 +161,17 @@ public class Logs implements Serializable {
     public String toString() {
         return "Logs{" +
                 "id='" + id + '\'' +
-                ", userName='" + userName + '\'' +
+                ", url='" + url + '\'' +
+                ", method='" + method + '\'' +
+                ", ip='" + ip + '\'' +
+                ", classMethod='" + classMethod + '\'' +
+                ", params='" + params + '\'' +
+                ", menu='" + menu + '\'' +
                 ", level='" + level + '\'' +
                 ", type='" + type + '\'' +
-                ", title='" + title + '\'' +
+                ", userId='" + userId + '\'' +
+                ", userName='" + userName + '\'' +
                 ", createDate=" + createDate +
-                ", remoteAddr='" + remoteAddr + '\'' +
-                ", requestUri='" + requestUri + '\'' +
-                ", method='" + method + '\'' +
-                ", params='" + params + '\'' +
                 ", exceptions='" + exceptions + '\'' +
                 '}';
     }

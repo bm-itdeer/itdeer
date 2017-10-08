@@ -56,10 +56,10 @@ public class LogsServiceImpl implements LogsService{
      * @param title
      * @return
      */
-    @Override
+   /* @Override
     public Page<Logs> findByTitleLike(Integer page,String title) {
         return logsRepository.findByTitleLike(title,BasePageBuilder.create(page,configProperties.getSystemPagesize(),sort));
-    }
+    }*/
 
     /**
      * 分页-按日期期间-查询-按时间降序

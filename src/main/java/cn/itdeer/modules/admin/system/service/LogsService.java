@@ -19,7 +19,7 @@ public interface LogsService {
      * @param title
      * @return
      */
-    Page<Logs> findByTitleLike(Integer page,String title);
+    //Page<Logs> findByTitleLike(Integer page,String title);
 
     /**
      * 日志-按ID-查询

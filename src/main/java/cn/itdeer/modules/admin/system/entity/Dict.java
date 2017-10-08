@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.Min;
 import java.io.Serializable;
 
 /**
@@ -27,6 +28,7 @@ public class Dict implements Serializable{
     private String label;	                        // 标签
     private String type;	                        // 类型
     private String description;                     // 描述
+    @Min(value = 100,message = "排序值不能小于100")
     private int sort;	                            // 排序
 
     public String getId() {

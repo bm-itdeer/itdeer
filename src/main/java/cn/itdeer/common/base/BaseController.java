@@ -87,14 +87,14 @@ public abstract class BaseController {
     protected void addLogs(HttpServletRequest request,Logs logs){
         //UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
-        logs.setUserName("admin");  //之后开启权限控制，这里需要获取登录用户
+        //logs.setUserName("admin");  //之后开启权限控制，这里需要获取登录用户
 
-        logs.setCreateDate(new Date());
-        logs.setRemoteAddr(request.getRemoteAddr());
-        logs.setRequestUri(request.getRequestURI());
-        logs.setMethod(request.getMethod());
-        logs.setParams(request.getQueryString());
-        logsService.save(logs);
+        //logs.setCreateDate(new Date());
+        //logs.setRemoteAddr(request.getRemoteAddr());
+        //logs.setRequestUri(request.getRequestURI());
+        //logs.setMethod(request.getMethod());
+        //logs.setParams(request.getQueryString());
+        //logsService.save(logs);
     }
 
 }

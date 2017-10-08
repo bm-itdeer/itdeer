@@ -41,7 +41,7 @@ public class LogsController extends BaseController{
      * @return
      *
      */
-    @RequestMapping(value = "/findByTitleLike",method = RequestMethod.GET)
+   /* @RequestMapping(value = "/findByTitleLike",method = RequestMethod.GET)
     public String findByTitleLike(@RequestParam(value = "page", defaultValue = "0") Integer page,@RequestParam String title,Model model){
         Page<Logs> pageList = logsService.findByTitleLike(page,"%" + title + "%");
         model.addAttribute("pageList",pageList);
@@ -52,7 +52,7 @@ public class LogsController extends BaseController{
 
         model.addAttribute("url","/admin/system/logs/findByTitleLike?title=" + title);
         return "admin/system/logs_list";
-    }
+    }*/
 
     /**
      * 日志-按ID-查询
@@ -93,7 +93,7 @@ public class LogsController extends BaseController{
     public String delete(@PathVariable String id, RedirectAttributes ra,HttpServletRequest request,Model model){
         logsService.delete(id);
         addMessage(ra,new BaseMessage("日志删除完成","执行成功！","success"));
-        addLogs(request,new Logs("info","系统日志","删除日志",null));
+       // addLogs(request,new Logs("info","系统日志","删除日志",null));
         return "redirect:/admin/system/logs/findAll";
     }
 
@@ -105,7 +105,7 @@ public class LogsController extends BaseController{
     public String empty(RedirectAttributes ra,HttpServletRequest request){
         logsService.empty();
         addMessage(ra,new BaseMessage("日志清除完成","执行成功！","success"));
-        addLogs(request,new Logs("info","系统日志","清空日志",null));
+       // addLogs(request,new Logs("info","系统日志","清空日志",null));
         return "redirect:/admin/system/logs/findAll";
     }
 

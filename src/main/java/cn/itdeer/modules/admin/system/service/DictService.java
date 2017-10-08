@@ -14,6 +14,13 @@ import java.util.List;
 
 public interface DictService {
 
+    List<Dict> list();
+    Dict save2(Dict dict);
+    void findById2(String id) throws Exception;
+    Dict findById3(String id);
+
+
+
     /**
      * 获取所有类型
      * @return

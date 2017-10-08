@@ -77,11 +77,11 @@ public class ArticleController extends BaseController{
         try {
             articleService.edit(article);
             addMessage(ra,new BaseMessage("文章编辑成功","执行成功！","success"));
-            addLogs(request,new Logs("info","操作日志","文章编辑成功",null));
+           // addLogs(request,new Logs("info","操作日志","文章编辑成功",null));
         } catch (ValidateException e) {
             model.addAttribute("form",article);
             addMessage(model,new BaseMessage(e.getMessage(),"执行失败！","error"));
-            addLogs(request,new Logs("error","操作日志","文章编辑失败",e.getMessage()));
+            //addLogs(request,new Logs("error","操作日志","文章编辑失败",e.getMessage()));
             return "admin/blog/article_content";
         }
         return "redirect:/admin/blog/article/findAll";
@@ -98,11 +98,11 @@ public class ArticleController extends BaseController{
         try {
             articleService.save(article);
             addMessage(ra,new BaseMessage("文章添加成功","执行成功！","success"));
-            addLogs(request,new Logs("info","操作日志","文章添加成功",null));
+           // addLogs(request,new Logs("info","操作日志","文章添加成功",null));
         } catch (ValidateException e) {
             model.addAttribute("form",article);
             addMessage(model,new BaseMessage(e.getMessage(),"执行失败！","error"));
-            addLogs(request,new Logs("error","操作日志","文章添加失败",e.getMessage()));
+           // addLogs(request,new Logs("error","操作日志","文章添加失败",e.getMessage()));
             return "admin/blog/article_form";
         }
         return "redirect:/admin/blog/article/findAll";

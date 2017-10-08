@@ -49,6 +49,6 @@ public interface LogsRepository extends JpaRepository<Logs,String> {
      * @param pageable
      * @return
      */
-    Page<Logs> findByTitleLike(String title,Pageable pageable);
+    //Page<Logs> findByTitleLike(String title,Pageable pageable);
 
 }

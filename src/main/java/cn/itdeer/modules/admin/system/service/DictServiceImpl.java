@@ -1,8 +1,10 @@
 package cn.itdeer.modules.admin.system.service;
 
+import cn.itdeer.common.api.ApiException;
+import cn.itdeer.common.api.ApiResultEnum;
 import cn.itdeer.common.base.BasePageBuilder;
 import cn.itdeer.common.config.ConfigProperties;
-import cn.itdeer.common.exception.ValidateException;
+import cn.itdeer.common.exception.BaseException;
 import cn.itdeer.modules.admin.system.entity.Dict;
 import cn.itdeer.modules.admin.system.repository.DictRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,22 +32,48 @@ public class DictServiceImpl implements DictService{
     //定义降序Sort
     private Sort sort = new Sort(Sort.Direction.ASC,"sort");
 
+
+    @Override
+    public List<Dict> list(){
+        return dictRepository.findAll();
+    }
+
+    @Override
+    public Dict save2(Dict dict) {
+
+        return dictRepository.save(dict);
+    }
+
+    @Override
+    public void findById2(String id) throws Exception{
+        Dict dict = dictRepository.findOne(id);
+        if(dict.getSort() > 100){
+            throw new ApiException(ApiResultEnum.ERROR);
+        }else{
+            throw new ApiException(ApiResultEnum.ERROR);
+        }
+    }
+
+    public Dict findById3(String id){
+       return dictRepository.findOne(id);
+    }
+
     /**
      * 字典-保存
      * @param dict
      */
     @Override
-    public void save(Dict dict) throws ValidateException{
+    public void save(Dict dict) throws BaseException{
         if(dict.getValue()==null || "".equals(dict.getValue())){
-            throw new ValidateException("字典键值不能为空！");
+            throw new BaseException(0,"字典键值不能为空！");
         }
 
         if(dict.getLabel()==null || "".equals(dict.getLabel())){
-            throw new ValidateException("字典标签不能为空！");
+            throw new BaseException(0,"字典标签不能为空！");
         }
 
         if(dict.getType()==null || "".equals(dict.getType())){
-            throw new ValidateException("字典类型不能为空！");
+            throw new BaseException(0,"字典类型不能为空！");
         }
 
         dictRepository.save(dict);
@@ -88,6 +116,8 @@ public class DictServiceImpl implements DictService{
     public Page<Dict> findAll(Integer page) {
         return dictRepository.findAll(BasePageBuilder.create(page,configProperties.getSystemPagesize(),sort));
     }
+
+
 
     /**
      * 类型-查询
