@@ -1,41 +1,83 @@
 package cn.itdeer.modules.admin.system.service;
 
-import cn.itdeer.ItdeerApp;
-import cn.itdeer.common.base.BasePageBuilder;
-import cn.itdeer.modules.admin.system.entity.Dict;
-import cn.itdeer.modules.admin.system.repository.DictRepository;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.data.domain.Page;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import static org.junit.Assert.*;
 
 /**
- * Created by sundafei on 17-8-23.
+ * 描述：系统-字典-Service实现层-测试
+ * 创建人：Itdeer
+ * 创建时间：2017/10/9 22:12
  */
+
+@SpringBootTest
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = ItdeerApp.class)
 public class DictServiceImplTest {
 
     @Autowired
-    private DictRepository dictRepository;
+    private DictServiceImpl dictService;
 
     @Test
-    public void type() throws Exception {
-        System.out.println(dictRepository.type());
+    public void list() throws Exception {
+
     }
 
     @Test
-    public void findByDescriptionLike(){
+    public void save2() throws Exception {
 
-        Page<Dict> page = dictRepository.findByDescriptionLike("%类型%", BasePageBuilder.create(0,10));
+    }
 
-        for (Dict dict :page){
-            System.out.println("Page1:"+dict.toString());
-        }
+    @Test
+    public void findById2() throws Exception {
+
+    }
+
+    @Test
+    public void findById3() throws Exception {
+
+    }
+
+    @Test
+    public void save() throws Exception {
+
+    }
+
+    @Test
+    public void findByType() throws Exception {
+
+    }
+
+    @Test
+    public void delete() throws Exception {
+
+    }
+
+    @Test
+    public void findByType1() throws Exception {
+
+    }
+
+    @Test
+    public void findAll() throws Exception {
+
+    }
+
+    @Test
+    public void type() throws Exception {
+
+    }
+
+    @Test
+    public void desLike() throws Exception {
+
+    }
+
+    @Test
+    public void findById() throws Exception {
 
     }
 

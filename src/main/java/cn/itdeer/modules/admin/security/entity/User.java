@@ -1,34 +1,31 @@
-package cn.itdeer.modules.admin.system.entity;
+package cn.itdeer.modules.admin.security.entity;
 
-import org.hibernate.annotations.GenericGenerator;
-
+import javax.persistence.Embeddable;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
 import javax.persistence.Table;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 /**
- * 说明： 系统-用户-实体类
+ * 说明： 权限-用户-实体类
  * 创建人：Itdeer
  * 创建时间：2017-08-16 上午10:48.
  */
 
 @Entity
-@Table(name="sys_user")
-public class User implements Serializable{
+@Embeddable
+@Table(name="authority_user")
+public class User extends DataEntity{
 
-    @Id
-    @GenericGenerator(name="id", strategy="uuid")
-    @GeneratedValue(generator="id")
-    private String id;                              //用户ID
 
-    private String name;                            //用户名称
+    //private String id;                              //用户ID
+
+    private String userName;                            //用户名称
     private String email;                           //用户Email
     private String password;                        //用户登录密码
 
-    private Date   createDate;                      //注册时间
+    //private Date   createDate;                      //注册时间
     private Date   lastLoginDate;                   //最后登录时间
 
     private String mobile;                          //手机号码
@@ -45,20 +42,16 @@ public class User implements Serializable{
     private String address;                         //现在住址
     private String description;                     //简单描述
 
-    public String getId() {
-        return id;
+   // private List<Role2> roles;                       //用户权限
+
+
+
+    public String getUserName() {
+        return userName;
     }
 
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
     public String getEmail() {
@@ -75,14 +68,6 @@ public class User implements Serializable{
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public Date getCreateDate() {
-        return createDate;
-    }
-
-    public void setCreateDate(Date createDate) {
-        this.createDate = createDate;
     }
 
     public Date getLastLoginDate() {
@@ -173,11 +158,13 @@ public class User implements Serializable{
         this.description = description;
     }
 
+
+
     @Override
     public String toString() {
         return "User{" +
                 "id='" + id + '\'' +
-                ", name='" + name + '\'' +
+                ", userName='" + userName + '\'' +
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
                 ", createDate=" + createDate +

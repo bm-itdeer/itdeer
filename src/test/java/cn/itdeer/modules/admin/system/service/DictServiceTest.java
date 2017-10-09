@@ -11,7 +11,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import static org.junit.Assert.*;
 
 /**
- * 描述：DictService测试
+ * 描述：系统-字典-Service接口层-测试
  * 创建人：Itdeer
  * 创建时间：2017/10/9 0:08
  */

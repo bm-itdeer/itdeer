@@ -20,11 +20,13 @@ import java.util.Date;
 import static org.junit.Assert.*;
 
 /**
- * Created by sundafei on 17-8-22.
+ * 描述：系统-日志-Service接口层-测试
+ * 创建人：Itdeer
+ * 创建时间：2017/10/9 0:08
  */
 
+@SpringBootTest
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = ItdeerApp.class)
 public class LogsServiceImplTest {
 
 
