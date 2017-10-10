@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @RequestMapping("/admin")
 public class SystemController {
 
-    @RequestMapping("")
+    @RequestMapping(value = "")
     public String toIndex() {
         return "admin/system/login";
     }

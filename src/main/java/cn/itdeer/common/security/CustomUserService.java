@@ -1,6 +1,6 @@
 package cn.itdeer.common.security;
 
-import cn.itdeer.modules.admin.security.entity.Role2;
+import cn.itdeer.modules.admin.security.entity.Role;
 import cn.itdeer.modules.admin.security.entity.User;
 import cn.itdeer.modules.admin.security.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,9 +36,9 @@ public class CustomUserService implements UserDetailsService{
 
         List<SimpleGrantedAuthority> authorities = new ArrayList<>();
 
-       /* for(Role2 role : user.getRoles()){
+       for(Role role : user.getRoles()){
             authorities.add(new SimpleGrantedAuthority(role.getName()));
-        }*/
+        }
 
         return new org.springframework.security.core.userdetails.User(user.getUserName(),user.getPassword(),authorities);
     }

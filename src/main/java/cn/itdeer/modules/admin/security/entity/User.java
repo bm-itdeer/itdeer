@@ -1,9 +1,7 @@
 package cn.itdeer.modules.admin.security.entity;
 
-import javax.persistence.Embeddable;
-import javax.persistence.Entity;
-import javax.persistence.Table;
-import java.io.Serializable;
+import cn.itdeer.common.base.BaseEntity;
+import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
 
@@ -14,18 +12,13 @@ import java.util.List;
  */
 
 @Entity
-@Embeddable
 @Table(name="authority_user")
-public class User extends DataEntity{
-
-
-    //private String id;                              //用户ID
+public class User extends BaseEntity {
 
     private String userName;                            //用户名称
     private String email;                           //用户Email
     private String password;                        //用户登录密码
 
-    //private Date   createDate;                      //注册时间
     private Date   lastLoginDate;                   //最后登录时间
 
     private String mobile;                          //手机号码
@@ -42,8 +35,8 @@ public class User extends DataEntity{
     private String address;                         //现在住址
     private String description;                     //简单描述
 
-   // private List<Role2> roles;                       //用户权限
-
+    @ManyToMany(cascade = {CascadeType.REFRESH},fetch = FetchType.EAGER)
+    private List<Role> roles;                       //用户权限
 
 
     public String getUserName() {
@@ -158,16 +151,20 @@ public class User extends DataEntity{
         this.description = description;
     }
 
+    public List<Role> getRoles() {
+        return roles;
+    }
 
+    public void setRoles(List<Role> roles) {
+        this.roles = roles;
+    }
 
     @Override
     public String toString() {
         return "User{" +
-                "id='" + id + '\'' +
-                ", userName='" + userName + '\'' +
+                "userName='" + userName + '\'' +
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
-                ", createDate=" + createDate +
                 ", lastLoginDate=" + lastLoginDate +
                 ", mobile='" + mobile + '\'' +
                 ", userType='" + userType + '\'' +
@@ -179,6 +176,7 @@ public class User extends DataEntity{
                 ", homeTown='" + homeTown + '\'' +
                 ", address='" + address + '\'' +
                 ", description='" + description + '\'' +
+                ", roles=" + roles +
                 '}';
     }
 }
