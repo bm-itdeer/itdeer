@@ -27,7 +27,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     public void configure(WebSecurity web) throws Exception {
         web.ignoring()
-                .antMatchers("/resources/*");
+                .antMatchers("/resources/*","/common/**","/modules/**");
     }
 
     @Override
@@ -40,7 +40,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.csrf()
                 .disable().headers().frameOptions().disable();
         http.authorizeRequests()
-                .antMatchers("/").permitAll()
+                .antMatchers("/","/admin/login","/blog/**").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
