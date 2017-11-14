@@ -1,6 +1,7 @@
 package cn.itdeer.modules.admin.security.web;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
@@ -10,7 +11,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
  */
 
 @Controller
-@RequestMapping("/admin/system/user")
+@RequestMapping("/admin/security/user")
 public class UserController {
+
+    @GetMapping("/findAll")
+    public String findAll(){
+
+        System.out.println("用户列表");
+        return  null;
+    }
 
 }

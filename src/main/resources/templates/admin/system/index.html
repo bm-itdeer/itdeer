@@ -87,9 +87,18 @@
                     </ul>
                 </li>
                 <li>
-                    <a href="#"><i class="fa fa-picture-o"></i> <span class="nav-label">相册</span><span class="fa arrow"></span></a>
+                    <a href="#">
+                        <i class="fa fa-picture-o"></i>
+                        <span class="nav-label">素材管理</span>
+                        <span class="fa arrow"></span>
+                    </a>
+
                     <ul class="nav nav-second-level">
-                        <li><a class="J_menuItem" href="basic_gallery.html">基本图库</a>
+                        <li>
+                            <a th:href="@{/admin/system/picture/findAll}" class="dropdown-toggle" target="main">
+                                <i class="fa fa-photo"></i>图片管理
+                                <span class="menu-text"></span>
+                            </a>
                         </li>
                         <li><a class="J_menuItem" href="carousel.html">图片切换</a>
                         </li>
@@ -161,12 +170,6 @@
                             </a>
                         </li>
                         <li>
-                            <a th:href="@{/admin/system/picture/findAll}" class="dropdown-toggle" target="main">
-                                <i class="fa fa-photo"></i>图片管理
-                                <span class="menu-text"></span>
-                            </a>
-                        </li>
-                        <li>
                             <a th:href="@{/admin/system/theme/findAll}" class="dropdown-toggle" target="main">
                                 <i class="fa fa-diamond"></i>主题管理
                                 <span class="menu-text"></span>
@@ -181,6 +184,12 @@
                         <li>
                             <a th:href="@{/admin/system/dict/findAll}" class="dropdown-toggle" target="main">
                                 <i class="fa fa-bookmark-o"></i>字典管理
+                                <span class="menu-text"></span>
+                            </a>
+                        </li>
+                        <li>
+                            <a th:href="@{/admin/security/user/findAll}" class="dropdown-toggle" target="main">
+                                <i class="fa fa-bookmark-o"></i>用户管理
                                 <span class="menu-text"></span>
                             </a>
                         </li>

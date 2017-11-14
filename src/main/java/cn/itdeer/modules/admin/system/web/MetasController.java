@@ -21,7 +21,7 @@ import java.util.List;
  */
 
 @Controller
-@RequestMapping("/admin/sys/metas")
+@RequestMapping("/admin/system/metas")
 public class MetasController extends BaseController{
 
     @Autowired

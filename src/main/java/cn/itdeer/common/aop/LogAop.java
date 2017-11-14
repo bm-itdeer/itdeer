@@ -20,8 +20,8 @@ import java.util.Date;
  * 创建人：Itdeer
  * 创建时间：2017/9/30 23:56
  */
-@Aspect
-@Order(1)
+//@Aspect
+//@Order(1)
 @Component
 public class LogAop {
 

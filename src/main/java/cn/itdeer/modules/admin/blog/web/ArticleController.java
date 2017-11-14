@@ -96,6 +96,7 @@ public class ArticleController extends BaseController{
     @RequestMapping(value = "/save",method = RequestMethod.POST)
     public String save(Article article, Model model, RedirectAttributes ra,HttpServletRequest request){
         try {
+            System.out.println(article.toString());
             articleService.save(article);
             addMessage(ra,new BaseMessage("文章添加成功","执行成功！","success"));
            // addLogs(request,new Logs("info","操作日志","文章添加成功",null));

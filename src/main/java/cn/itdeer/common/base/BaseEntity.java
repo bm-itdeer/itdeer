@@ -18,16 +18,29 @@ public abstract class BaseEntity implements Serializable {
     @Id
     @GeneratedValue(generator="id")
     @GenericGenerator(name="id", strategy="uuid")
-    protected String id;
+    @Column(name = "id",columnDefinition="varchar(50) COMMENT 'ID'")
+    private String id;
 
-    @Column
-    protected String remarks;	        // 备注
-    protected Date updateDate;	    // 更新日期
-    protected Date createDate;	    // 创建日期
+    @Basic
+    @Column(name = "creater",columnDefinition="varchar(50) COMMENT '创建者'")
+    private String creater;//创建者
 
-    protected String createByUser;	        // 创建者
-    protected String updateByUser;	        // 更新者
-    protected String presentUser;      //当前用户
+    @Basic
+    @Column(name = "create_time",columnDefinition="DATETIME COMMENT '创建时间'")
+    private Date createTime = new Date();// 创建时间
+
+    @Basic
+    @Column(name = "updater",columnDefinition="varchar(50) COMMENT '更新者'")
+    private String updater;//更新者
+
+    @Basic
+    @Column(name = "update_time",columnDefinition="DATETIME COMMENT '更新时间'")
+    private Date updateTime = new Date();// 更新时间
+
+    @Basic
+    @Column(name = "remarks",columnDefinition="varchar(200) COMMENT '备注'")
+    private String remarks;// 备注
+
 
     public String getId() {
         return id;
@@ -37,53 +50,45 @@ public abstract class BaseEntity implements Serializable {
         this.id = id;
     }
 
+    public String getCreater() {
+        return creater;
+    }
+
+    public void setCreater(String creater) {
+        this.creater = creater;
+    }
+
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    public Date getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
+    }
+
+    public String getUpdater() {
+        return updater;
+    }
+
+    public void setUpdater(String updater) {
+        this.updater = updater;
+    }
+
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    public Date getUpdateTime() {
+        return updateTime;
+    }
+
+    public void setUpdateTime(Date updateTime) {
+        this.updateTime = updateTime;
+    }
+
     public String getRemarks() {
         return remarks;
     }
 
     public void setRemarks(String remarks) {
         this.remarks = remarks;
-    }
-
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    public Date getUpdateDate() {
-        return updateDate;
-    }
-
-    public void setUpdateDate(Date updateDate) {
-        this.updateDate = updateDate;
-    }
-
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    public Date getCreateDate() {
-        return createDate;
-    }
-
-    public void setCreateDate(Date createDate) {
-        this.createDate = createDate;
-    }
-
-    public String getCreateByUser() {
-        return createByUser;
-    }
-
-    public void setCreateByUser(String createByUser) {
-        this.createByUser = createByUser;
-    }
-
-    public String getUpdateByUser() {
-        return updateByUser;
-    }
-
-    public void setUpdateByUser(String updateByUser) {
-        this.updateByUser = updateByUser;
-    }
-
-    public String getPresentUser() {
-        return presentUser;
-    }
-
-    public void setPresentUser(String presentUser) {
-        this.presentUser = presentUser;
     }
 }

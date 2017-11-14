@@ -37,7 +37,10 @@ public class ArticleServiceImpl implements ArticleService{
             article.setPictureId(configProperties.getSystemDefaultPictureId());
             article.setPictureUrl(pictureService.findById(configProperties.getSystemDefaultPictureId()).getUrl());
         }else{
-            article.setPictureUrl(pictureService.findById(article.getPictureId()).getUrl());
+//            article.setPictureUrl(pictureService.findById(article.getPictureId()).getUrl());
+
+            article.setPictureId(configProperties.getSystemDefaultPictureId());
+            article.setPictureUrl(pictureService.findById(configProperties.getSystemDefaultPictureId()).getUrl());
         }
 
         //User user = (User)SecurityContextHolder.getContext().getAuthentication().getPrincipal();

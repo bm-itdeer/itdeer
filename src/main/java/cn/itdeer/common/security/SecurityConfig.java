@@ -15,8 +15,8 @@ import org.springframework.security.core.userdetails.UserDetailsService;
  * 创建时间：2017/10/9 21:43
  */
 
-@EnableWebSecurity
-@EnableAutoConfiguration
+//@EnableWebSecurity
+//@EnableAutoConfiguration
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Bean
