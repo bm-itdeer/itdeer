@@ -1,11 +1,7 @@
 package cn.itdeer.modules.admin.security.entity;
 
 import cn.itdeer.common.base.BaseEntity;
-import org.hibernate.annotations.GenericGenerator;
-import org.hibernate.annotations.Proxy;
-
 import javax.persistence.*;
-import java.io.Serializable;
 import java.util.*;
 import javax.persistence.Transient;
 
@@ -100,12 +96,18 @@ public class User extends BaseEntity{
     private String homeTown;//家乡地址
 
     @Basic
+    @Column(name = "dept_id",columnDefinition="varchar(200) COMMENT '部门ID'")
+    private String deptId;//现在住址
+
+    @Basic
+    @Column(name = "dept_name",columnDefinition="varchar(50) COMMENT '部门名称'")
+    private String deptName;//现在住址
+
+    @Basic
     @Column(name = "address",columnDefinition="varchar(200) COMMENT '现在住址'")
     private String address;//现在住址
 
-
-    @ManyToMany
-    @JoinTable(name = "authority_user_role", joinColumns = @JoinColumn(name = "user_id"),inverseJoinColumns = @JoinColumn(name = "role_id"))
+    @Transient
     private Set<Role> roles = new HashSet<Role>();//用户角色
 
     public String getUserName() {
@@ -266,6 +268,22 @@ public class User extends BaseEntity{
 
     public void setHomeTown(String homeTown) {
         this.homeTown = homeTown;
+    }
+
+    public String getDeptId() {
+        return deptId;
+    }
+
+    public void setDeptId(String deptId) {
+        this.deptId = deptId;
+    }
+
+    public String getDeptName() {
+        return deptName;
+    }
+
+    public void setDeptName(String deptName) {
+        this.deptName = deptName;
     }
 
     public String getAddress() {

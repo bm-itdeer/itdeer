@@ -1,44 +1,43 @@
 <!DOCTYPE html>
 <html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
 <head>
-
     <title>登录</title>
-    <meta charset="UTF-8"/>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <link type="text/css" rel="stylesheet" th:href="@{/common/css/bootstrap.min.css}" />
     <link type="text/css" rel="stylesheet" th:href="@{/modules/admin/css/login_animate.css}" />
     <link type="text/css" rel="stylesheet" th:href="@{/modules/admin/css/login.css}" />
-
 </head>
 
 <body class="gray-bg">
-
-<div class="middle-box text-center loginscreen  animated fadeInDown">
-    <div>
+    <div class="middle-box text-center loginscreen  animated fadeInDown">
         <div>
-            <h1 class="logo-name"><img th:src="@{/modules/admin/img/logo.png}"/></h1>
+            <div>
+                <h1 class="logo-name"><img th:src="@{/modules/admin/img/logo.png}"/></h1>
+            </div>
+            <h3 style="font-family: '楷体';color: white;">欢迎登录ITDEER</h3>
+
+            <form class="m-t" role="form" th:method="post" th:action="@{/admin/login}">
+                <br/>
+                <div class="form-group">
+                    <input type="text" name="loginName" class="form-control" placeholder="用户名称" style="height: 45px; border-radius:10px;" required=""/>
+                </div>
+                <br/>
+                <div class="form-group">
+                    <input type="password" name="password" class="form-control" placeholder="用户密码" style="height: 45px; border-radius:10px;" required=""/>
+                </div>
+                <br/>
+                <button type="submit" class="btn btn-primary block full-width m-b" style="height: 45px;background-color: #7267BA; border-radius:10px;">登 录</button>
+
+                <p class="text-muted text-center"> <a href="login.html#"><small>忘记密码了？</small></a> | <a href="register.html">注册一个新账号</a></p>
+                <p class="text-muted text-center">
+                    <a href=""><img th:src="@{/modules/admin/img/qq.png}"/></a>
+                    <a href=""><img th:src="@{/modules/admin/img/weixin.png}"/></a>
+                    <a href=""><img th:src="@{/modules/admin/img/weibo.png}"/></a>
+                </p>
+            </form>
         </div>
-        <h2 style="font-family: '楷体';">欢迎登录ITDEER管理系统</h2>
-
-        <form class="m-t" role="form" th:method="post" th:action="@{/admin/login}">
-            <br/>
-            <div class="form-group">
-                <input type="text" name="loginName" class="form-control" placeholder="登录名称" style="height: 45px; border-radius:10px;" required=""/>
-            </div>
-            <br/>
-            <div class="form-group">
-                <input type="password" name="password" class="form-control" placeholder="登录密码" style="height: 45px; border-radius:10px;" required=""/>
-            </div>
-            <br/>
-            <button type="submit" class="btn btn-primary block full-width m-b" style="height: 45px; border-radius:10px;">登 录</button>
-
-            <!--<p class="text-muted text-center"> <a href="login.html#">&lt;!&ndash;<small>忘记密码了？</small>&ndash;&gt;</a> | <a href="register.html">注册一个新账号</a></p>-->
-        </form>
     </div>
-</div>
-
 </body>
-
 </html>

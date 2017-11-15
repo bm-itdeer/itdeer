@@ -28,12 +28,12 @@ public class MenuRepositoryTest {
     @Test
     public void save(){
 
-        Menu menu = new Menu("系统管理", null, null, null);
+       /* Menu menu = new Menu("系统管理", null, null, null);
 
         menuRepository.save(menu);
         menuRepository.save(new Menu("部门管理", "/depment", "_blank",menu));
         menuRepository.save(new Menu("日志管理", "/logs", "_blank",menu));
-        menuRepository.save(new Menu("标签管理", "/tags", "_blank",menu));
+        menuRepository.save(new Menu("标签管理", "/tags", "_blank",menu));*/
     }
 
     @Test

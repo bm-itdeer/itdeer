@@ -18,13 +18,16 @@ import java.util.Set;
 @Table(name="authority_menu")
 public class Menu extends BaseEntity {
 
-    @ManyToOne
-    @JoinColumn(name = "menu_id",columnDefinition="varchar(50) COMMENT '父级菜单'")
-    private Menu parent; // 所有父级编号
+    @Basic
+    @Column(name = "parent_id",columnDefinition="varchar(10) COMMENT '父级菜单ID'")
+    private String parentId; // 父级编号
 
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "menu_id",columnDefinition="varchar(50) COMMENT '子菜单'")
-    private Set<Menu> child = new HashSet<Menu>(); // 所有父级编号
+    @Basic
+    @Column(name = "parent_name",columnDefinition="varchar(20) COMMENT '父级菜单名称'")
+    private String parentName; // 父级菜单名称
+
+    @Transient
+    private Set<Menu> child = new HashSet<Menu>(); // 所有子菜单编号
 
     @Basic
     @Column(name = "menu_name",columnDefinition="varchar(50) COMMENT '菜单名称'")
@@ -43,49 +46,39 @@ public class Menu extends BaseEntity {
     private String icon; 	// 图标
 
     @Basic
+    @Column(name = "type",columnDefinition="varchar(10) COMMENT '类型'")
+    private String type; 	// 菜单类型 类型     0：目录   1：菜单   2：按钮
+
+    @Basic
     @Column(name = "sort",columnDefinition="bigint COMMENT '排序'")
     private Integer sort; 	// 排序
+
+    @Basic
+    @Column(name = "open",columnDefinition="varchar(10) COMMENT 'ztree是否打开'")
+    private boolean open;
 
     @Basic
     @Column(name = "is_show",columnDefinition="varchar(10) COMMENT '是否在菜单中显示'")
     private boolean isShow; 	// 是否在菜单中显示（1：显示；0：不显示）
 
-    @ManyToMany
-    @JoinTable(name = "authority_role_menu", joinColumns = @JoinColumn(name = "menu_id"),inverseJoinColumns = @JoinColumn(name = "role_id"))
+    @Transient
     private Set<Role> menus = new HashSet<Role>();     //角色菜单列表
 
-    public Menu() {
 
+    public String getParentId() {
+        return parentId;
     }
 
-    @Override
-    public String toString() {
-        return "Menu{" +
-                "parent=" + parent +
-                ", child=" + child +
-                ", menuName='" + menuName + '\'' +
-                ", menuUrl='" + menuUrl + '\'' +
-                ", target='" + target + '\'' +
-                ", icon='" + icon + '\'' +
-                ", sort=" + sort +
-                ", isShow=" + isShow +
-                ", menus=" + menus +
-                '}';
+    public void setParentId(String parentId) {
+        this.parentId = parentId;
     }
 
-    public Menu(String menuName, String menuUrl, String target, Menu parent) {
-        this.menuName = menuName;
-        this.menuUrl = menuUrl;
-        this.target = target;
-        this.parent = parent;
+    public String getParentName() {
+        return parentName;
     }
 
-    public Menu getParent() {
-        return parent;
-    }
-
-    public void setParent(Menu parent) {
-        this.parent = parent;
+    public void setParentName(String parentName) {
+        this.parentName = parentName;
     }
 
     public Set<Menu> getChild() {
@@ -128,12 +121,28 @@ public class Menu extends BaseEntity {
         this.icon = icon;
     }
 
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
     public Integer getSort() {
         return sort;
     }
 
     public void setSort(Integer sort) {
         this.sort = sort;
+    }
+
+    public boolean isOpen() {
+        return open;
+    }
+
+    public void setOpen(boolean open) {
+        this.open = open;
     }
 
     public boolean isShow() {

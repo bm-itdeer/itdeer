@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>用户列表</title>
+
+    <link rel="stylesheet" th:href="@{/modules/admin/css/bootstrap.min.css}" />
+    <link rel="stylesheet" th:href="@{/modules/admin/css/font-awesome.css}" />
+    <link rel="stylesheet" th:href="@{/modules/admin/css/security_list.css}" />
+    <script th:src="@{/modules/admin/js/jquery.min.js}"></script>
+
+</head>
+
+<body>
+<section class="content-header">
+    <ol id="nav_title" class="breadcrumb" style="position: static; float: none;">
+        <li class="active"><i class="fa fa-home" style="font-size: 20px; position: relative; top: 2px; left: -3px;"></i> &nbsp; 首页</li>
+        <li class="active"> 角色管理</li>
+    </ol>
+</section>
+<div class="rightinfo">
+    <div class="grid-btn">
+        <div class="form-group col-sm-2">
+            <input type="text" class="form-control" style="height: 30px;" placeholder="角色名称">
+        </div>
+        <a class="btn btn-default">查询</a>
+        <a class="btn btn-primary"><i class="fa fa-plus"></i>&nbsp;新增</a>
+        <a class="btn btn-primary"><i class="fa fa-pencil-square-o"></i>&nbsp;修改</a>
+        <a class="btn btn-primary"><i class="fa fa-trash-o"></i>&nbsp;删除</a>
+    </div>
+
+    <table class="tablelist">
+        <thead>
+        <tr>
+            <th>编号</th>
+            <th>标题</th>
+            <th>用户</th>
+            <th>籍贯</th>
+            <th>发布时间</th>
+            <th>是否审核</th>
+            <th>操作</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr>
+            <td>20130908</td>
+            <td>王金平幕僚：马英九声明字字见血 人活着没意思</td>
+            <td>admin</td>
+            <td>江苏南京</td>
+            <td>2013-09-09 15:05</td>
+            <td>已审核</td>
+            <td>
+                <a class="tablelink"><button class="btn btn-xs btn-info"><span class="glyphicon glyphicon-edit"></span>编辑</button></a>
+                <a class="tablelink"><button class="btn btn-xs btn-danger"><span class="glyphicon glyphicon-remove"></span>删除</button></a>
+                <a class="tablelink"><button class="btn btn-xs btn-success">添加键值</button></a>
+            </td>
+        </tr>
+
+        <tr>
+            <td>20130907</td>
+            <td>温州19名小学生中毒流鼻血续：周边部分企业关停</td>
+            <td>uimaker</td>
+            <td>山东济南</td>
+            <td>2013-09-08 14:02</td>
+            <td>未审核</td>
+            <td>
+                <a class="tablelink"><button class="btn btn-xs btn-info"><span class="glyphicon glyphicon-edit"></span>编辑</button></a>
+                <a class="tablelink"><button class="btn btn-xs btn-danger"><span class="glyphicon glyphicon-remove"></span>删除</button></a>
+                <a class="tablelink"><button class="btn btn-xs btn-success">添加键值</button></a>
+            </td>
+        </tr>
+
+        <tr>
+            <td>20130900</td>
+            <td>山东章丘公车进饭店景点将自动向监控系统报警</td>
+            <td>uimaker</td>
+            <td>山东滨州</td>
+            <td>2013-09-01 10:26</td>
+            <td>已审核</td>
+            <td>
+                <a class="tablelink"><button class="btn btn-xs btn-info"><span class="glyphicon glyphicon-edit"></span>编辑</button></a>
+                <a class="tablelink"><button class="btn btn-xs btn-danger"><span class="glyphicon glyphicon-remove"></span>删除</button></a>
+                <a class="tablelink"><button class="btn btn-xs btn-success">添加键值</button></a>
+            </td>
+        </tr>
+
+        <tr>
+            <td>20130900</td>
+            <td>山东章丘公车进饭店景点将自动向监控系统报警</td>
+            <td>uimaker</td>
+            <td>山东滨州</td>
+            <td>2013-09-01 10:26</td>
+            <td>已审核</td>
+            <td>
+                <a class="tablelink"><button class="btn btn-xs btn-info"><span class="glyphicon glyphicon-edit"></span>编辑</button></a>
+                <a class="tablelink"><button class="btn btn-xs btn-danger"><span class="glyphicon glyphicon-remove"></span>删除</button></a>
+                <a class="tablelink"><button class="btn btn-xs btn-success">添加键值</button></a>
+            </td>
+        </tr>
+
+        <tr>
+            <td>20130900</td>
+            <td>山东章丘公车进饭店景点将自动向监控系统报警</td>
+            <td>uimaker</td>
+            <td>山东滨州</td>
+            <td>2013-09-01 10:26</td>
+            <td>已审核</td>
+            <td>
+                <a class="tablelink"><button class="btn btn-xs btn-info"><span class="glyphicon glyphicon-edit"></span>编辑</button></a>
+                <a class="tablelink"><button class="btn btn-xs btn-danger"><span class="glyphicon glyphicon-remove"></span>删除</button></a>
+                <a class="tablelink"><button class="btn btn-xs btn-success">添加键值</button></a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+    <div class="pagin">
+        <div class="message">共<i class="blue">1256</i>条记录，当前显示第&nbsp;<i class="blue">2&nbsp;</i>页</div>
+        <ul class="paginList">
+            <li class="paginItem">
+                <a href="javascript:;"><span class="pagepre"></span></a>
+            </li>
+            <li class="paginItem">
+                <a href="javascript:;">1</a>
+            </li>
+            <li class="paginItem current">
+                <a href="javascript:;">2</a>
+            </li>
+            <li class="paginItem">
+                <a href="javascript:;">3</a>
+            </li>
+            <li class="paginItem">
+                <a href="javascript:;">4</a>
+            </li>
+            <li class="paginItem">
+                <a href="javascript:;">5</a>
+            </li>
+            <li class="paginItem more">
+                <a href="javascript:;">...</a>
+            </li>
+            <li class="paginItem">
+                <a href="javascript:;">10</a>
+            </li>
+            <li class="paginItem">
+                <a href="javascript:;"><span class="pagenxt"></span></a>
+            </li>
+        </ul>
+    </div>
+
+</div>
+
+<script type="text/javascript">
+    $('.tablelist tbody tr:odd').addClass('odd');
+</script>
+
+</body>
+
+</html>

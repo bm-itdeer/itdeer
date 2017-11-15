@@ -4,7 +4,6 @@ import cn.itdeer.common.base.BaseEntity;
 
 import javax.persistence.*;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 /**
@@ -25,12 +24,21 @@ public class Role extends BaseEntity {
     @Column(name = "useable",columnDefinition="varchar(10) COMMENT '是否是可用'")
     private boolean useable; 		//是否是可用
 
-    @ManyToMany
-    @JoinTable(name = "authority_user_role", joinColumns = @JoinColumn(name = "role_id"),inverseJoinColumns = @JoinColumn(name = "user_id"))
-    private Set<User> users = new HashSet<User>();
+    @Basic
+    @Column(name = "dept_id",columnDefinition="varchar(50) COMMENT '部门ID'")
+    private String deptId;
 
-    @ManyToMany
-    @JoinTable(name = "authority_role_menu", joinColumns = @JoinColumn(name = "role_id"),inverseJoinColumns = @JoinColumn(name = "menu_id"))
+    @Basic
+    @Column(name = "dept_name",columnDefinition="varchar(50) COMMENT '部门名称'")
+    private String deptName;
+
+    @Transient
+    private Set<Dept> depts = new HashSet<Dept>();  //部门列表
+
+    @Transient
+    private Set<User> users = new HashSet<User>();  //用户列表
+
+    @Transient
     private Set<Menu> menus = new HashSet<Menu>();     //角色菜单列表
 
     public String getRoleName() {
@@ -47,6 +55,30 @@ public class Role extends BaseEntity {
 
     public void setUseable(boolean useable) {
         this.useable = useable;
+    }
+
+    public String getDeptId() {
+        return deptId;
+    }
+
+    public void setDeptId(String deptId) {
+        this.deptId = deptId;
+    }
+
+    public String getDeptName() {
+        return deptName;
+    }
+
+    public void setDeptName(String deptName) {
+        this.deptName = deptName;
+    }
+
+    public Set<Dept> getDepts() {
+        return depts;
+    }
+
+    public void setDepts(Set<Dept> depts) {
+        this.depts = depts;
     }
 
     public Set<User> getUsers() {

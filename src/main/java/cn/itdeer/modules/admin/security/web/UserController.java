@@ -18,7 +18,7 @@ public class UserController {
     public String findAll(){
 
         System.out.println("用户列表");
-        return  null;
+        return  "admin/security/user_list";
     }
 
 }
