@@ -43,7 +43,7 @@ public class ArticleController extends BaseController{
         model.addAttribute("pageList",pageList);
         //获取分类列表
 
-        //model.addAttribute("url","/admin/system/dict/findAll");
+        model.addAttribute("url","/admin/system/dict/findAll");
         return "admin/blog/article_list";
     }
 
@@ -109,5 +109,32 @@ public class ArticleController extends BaseController{
         return "redirect:/admin/blog/article/findAll";
     }
 
+    /**
+     * 文章-删除-按ID
+     * @param id
+     * @param model
+     * @param ra
+     * @return
+     */
+    @RequestMapping(value = "/delete/{id}",method = RequestMethod.GET)
+    public String delete(@PathVariable String id, Model model, RedirectAttributes ra,HttpServletRequest request){
+        articleService.delete(id);
+        addMessage(ra,new BaseMessage("文章信息删除完成","执行成功！","success"));
+        return "redirect:/admin/blog/article/findAll";
+    }
+
+    /**
+     * 文章-预览-按ID
+     * @param id
+     * @param model
+     * @param ra
+     * @return
+     */
+    @RequestMapping(value = "/view/{id}",method = RequestMethod.GET)
+    public String view(@PathVariable String id, Model model, RedirectAttributes ra,HttpServletRequest request){
+        Article article = articleService.findById(id);
+        model.addAttribute("article",article);
+        return "admin/blog/article_view";
+    }
 
 }

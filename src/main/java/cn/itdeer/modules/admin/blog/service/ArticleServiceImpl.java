@@ -63,6 +63,8 @@ public class ArticleServiceImpl implements ArticleService{
         articleRepository.save(find_article);
     }
 
+
+
     @Autowired
     private ArticleRepository articleRepository;
 
@@ -77,5 +79,10 @@ public class ArticleServiceImpl implements ArticleService{
     @Override
     public Article findById(String id) {
         return articleRepository.findOne(id);
+    }
+
+    @Override
+    public void delete(String id) {
+        articleRepository.delete(id);
     }
 }

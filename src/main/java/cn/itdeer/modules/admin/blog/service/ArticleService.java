@@ -23,4 +23,6 @@ public interface ArticleService {
     void save(Article article) throws ValidateException;
 
     void edit(Article article) throws  ValidateException;
+
+    void delete(String id);
 }

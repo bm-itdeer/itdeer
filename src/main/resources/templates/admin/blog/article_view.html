@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="admin/tools/head"/>
+
+<body>
+
+<div style="margin: 10px;">
+
+    <th:block th:text="${article.htmlContent}"/>
+
+</div>
+
+<head th:replace="admin/tools/picture"/>
+
+<script th:src="@{/modules/admin/js/jquery.min.js}"></script>
+<script th:src="@{/modules/admin/js/bootstrap-tagsinput.min.js}"></script>
+
+</body>
+
+</html>
